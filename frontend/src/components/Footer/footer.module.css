@@ -1,0 +1,29 @@
+.footer {
+    @apply px-48 py-12 flex flex-col bg-secondary
+}
+.header{
+    @apply flex 
+}
+.links {
+    @apply flex gap-12
+}
+
+.subscribe {
+    @apply border-[0.5px] flex flex-col gap-6
+}
+
+.subscribe h3 {
+    @apply text-2xl font-bold
+}
+
+.subscribeForm {
+    @apply  flex flex-col gap-4 items-start border-2 border-red-600
+}
+
+.subscribeForm input {
+    @apply bg-white border-2 p-4 w-1/2
+}
+
+.privacyText {
+    @apply border-2 text-sm w-1/2
+}
