@@ -10,8 +10,8 @@ function PasswordInput({
   errors,
 }) {
   return (
-    <div className="form-group">
-      <label htmlFor="password" className="pr-4">
+    <div className="form-group flex flex-col">
+      <label htmlFor="password" className="pr-4 font-semibold mb-2">
         Password
       </label>
       <input
@@ -24,7 +24,7 @@ function PasswordInput({
       />
       <span
         onClick={handlePasswordVisibility}
-        className="relative bottom-5 left-[315px] cursor-pointer"
+        className="relative bottom-5 left-[230px] cursor-pointer"
       >
         {showPassword ? (
           <VscEye className="visible" />

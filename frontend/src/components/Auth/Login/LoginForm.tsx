@@ -42,7 +42,7 @@ function LoginForm() {
     // }
   }
   return (
-    <div className="p-12">
+    <div className="p-12 ">
       <FormWrapper title="Login" handleSubmit={handleSubmit}>
         <EmailInput email={email} handleEmail={handleEmail} errors={errors} />
         <PasswordInput

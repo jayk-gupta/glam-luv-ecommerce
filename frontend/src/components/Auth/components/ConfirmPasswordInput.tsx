@@ -6,7 +6,7 @@ function ConfirmPasswordInput({
   errors,
 }) {
   return (
-    <div className="form-group">
+    <div className="form-group flex flex-col">
       <label htmlFor="confirmPassword">Confirm password</label>
       <input
         type="password"

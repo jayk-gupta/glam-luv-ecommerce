@@ -1,0 +1,25 @@
+.bannerContainer {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+  padding: 0.6rem;
+}
+
+.bannerText {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 60s linear infinite;
+}
+.bannerText span{
+    @apply font-bold
+}
+/* Keyframes for marquee effect */
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

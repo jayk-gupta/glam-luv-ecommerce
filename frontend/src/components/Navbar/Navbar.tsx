@@ -13,9 +13,9 @@ function Navbar() {
 
       <div className={styles.navigation}>
         <ul className={styles.navLinks}>
-          <Link to="/about">About</Link>
-          <Link to="/products">Products</Link>
-          <Link to="/contact">Contact Us</Link>
+          <Link className={styles.navlink}  to="/about">About</Link>
+          <Link className={styles.navlink} to="/products">Products</Link>
+          <Link className={styles.navlink} to="/contact">Contact Us</Link>
         </ul>
       </div>
       <div className={styles.iconWrapper}>

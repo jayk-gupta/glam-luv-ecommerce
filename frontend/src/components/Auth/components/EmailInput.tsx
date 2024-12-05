@@ -2,8 +2,8 @@ import React from "react";
 
 function EmailInput({ email, handleEmail, errors }) {
   return (
-    <div className="form-group">
-      <label htmlFor="email" className="pr-8">
+    <div className="form-group flex flex-col">
+      <label htmlFor="password" className="pr-4 font-semibold mb-2">
         E-mail
       </label>
       <input

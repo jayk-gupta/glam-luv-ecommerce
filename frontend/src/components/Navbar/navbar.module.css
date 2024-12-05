@@ -2,7 +2,10 @@
     @apply bg-secondary flex justify-around p-4 items-center text-2xl
 }
 .navLinks{
-    @apply flex gap-4
+    @apply flex gap-4 
+}
+.navlink{
+  @apply  hover:cursor-pointer hover:text-primary
 }
 .iconWrapper{
     @apply flex px-4 gap-2
