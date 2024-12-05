@@ -14,5 +14,5 @@
   font-family: "Niconne", cursive;
   font-weight: 500;
   font-style: normal;
-  
+  @apply text-4xl text-primary
 }

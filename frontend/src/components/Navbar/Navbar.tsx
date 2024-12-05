@@ -7,13 +7,15 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav className={styles.navbarContainer}>
-      <div className={styles.logo}>Glam Luv</div>
+      <Link to="/">
+        <div className={styles.logo}>Glam Luv</div>
+      </Link>
+
       <div className={styles.navigation}>
         <ul className={styles.navLinks}>
-          <Link to=" /about" >
-            About
-          </Link>
+          <Link to="/about">About</Link>
           <Link to="/products">Products</Link>
+          <Link to="/contact">Contact Us</Link>
         </ul>
       </div>
       <div className={styles.iconWrapper}>

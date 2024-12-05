@@ -1,14 +1,17 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    colors: {
-        primary:" #E80071",
-        secondary: "#FFEAF6"
-      
-        // #F0BABF #F7E0E2
-    },
-    extend: {},
-  },
-  plugins: [],
-};
+" #E80071" "#FFEAF6" #F0BABF #F7E0E2
+
+id
+brand
+name
+price
+price_sign
+currency
+image_links
+product_link
+website_link
+description
+category
+product_type
+tag_list
+api_featured_image
+product_colors

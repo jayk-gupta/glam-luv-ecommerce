@@ -10,7 +10,7 @@ import AboutPage from "./pages/AboutPage";
 import CartPage from "./pages/CartPage";
 import UserAccountPage from "./pages/UserAccountPage";
 
-import Layout from "./Layout/layout";
+import Layout from "./Layout/Layout";
 import ProductsPage from "./pages/ProductsPage";
 const router = createBrowserRouter([
   {

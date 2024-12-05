@@ -22,7 +22,7 @@ const images = [
 function Categories() {
   return (
     <div className="categories">
-      <h2 className="text-4xl py-6 font-bold">Shop by Category</h2>
+      <h2 className="text-4xl py-6 font-bold text-center">Shop by Category</h2>
       <div className="flex gap-4">
         {images.map((img) => (
           <div className="rounded-lg " key={img.title}>
