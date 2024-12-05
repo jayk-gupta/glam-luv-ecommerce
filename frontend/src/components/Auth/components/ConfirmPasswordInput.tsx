@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Register/RegisterForm.module.css";
+
 function ConfirmPasswordInput({
   confirmPassword,
   handleConfirmPassword,
@@ -13,11 +13,11 @@ function ConfirmPasswordInput({
         id="confirm-password"
         required
         value={confirmPassword}
-        className={styles.input}
+        className="bg-white"
         onChange={handleConfirmPassword}
       />
       {errors.confirmPassword && (
-        <p className={styles.error}>{errors.confirmPassword}</p>
+        <p className="">{errors.confirmPassword}</p>
       )}
     </div>
   );

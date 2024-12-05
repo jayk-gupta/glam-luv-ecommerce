@@ -19,7 +19,9 @@ function Navbar() {
         </ul>
       </div>
       <div className={styles.iconWrapper}>
-        <VscAccount aria-label="Account" />
+        <Link to="/login">
+          <VscAccount aria-label="Account" />
+        </Link>
         <IoBagOutline aria-label="Cart" />
       </div>
     </nav>

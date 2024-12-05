@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../Register/RegisterForm.module.css";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 
@@ -12,18 +11,20 @@ function PasswordInput({
 }) {
   return (
     <div className="form-group">
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password" className="pr-4">
+        Password
+      </label>
       <input
         type={showPassword ? "text" : "password"}
         id="password"
         required
         value={password}
-        className={styles.input}
+        className="bg-white border-[0.5px] w-[16rem]"
         onChange={handlePassword}
       />
       <span
         onClick={handlePasswordVisibility}
-        className="relative bottom-7 left-[330px] cursor-pointer"
+        className="relative bottom-5 left-[315px] cursor-pointer"
       >
         {showPassword ? (
           <VscEye className="visible" />
@@ -31,7 +32,7 @@ function PasswordInput({
           <VscEyeClosed className="visible" />
         )}
       </span>
-      {errors.password && <p className={styles.error}>{errors.password}</p>}
+      {errors.password && <p className="">{errors.password}</p>}
     </div>
   );
 }

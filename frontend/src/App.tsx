@@ -12,6 +12,9 @@ import UserAccountPage from "./pages/UserAccountPage";
 
 import Layout from "./Layout/Layout";
 import ProductsPage from "./pages/ProductsPage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import ContactUs from "./pages/ContactUs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +38,18 @@ const router = createBrowserRouter([
       }, {
         path: "/products",
         element : <ProductsPage/>
+      }
+      , {
+        path: "/login",
+        element : <LoginPage/>
+      }
+      , {
+        path: "/signup",
+        element : <SignUpPage/>
+      }
+      , {
+        path: "/contactUs",
+        element : <ContactUs/>
       }
     ],
   },

@@ -17,11 +17,12 @@ const jwtAuthMiddleware = (req, res, next) => {
       error: "Invalid token",
       details: error.message,
     });
-    }
+  }
+}
     // Generate JWT Token
     const generateToken = (userData) => {
         return jwt.sign(userData,process.env.JWT_SECRET)
     }
-};
+
 
 module.exports = {jwtAuthMiddleware,generateToken}

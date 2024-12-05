@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormWrapper from "../components/FormWrapper";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
+import axios from "axios";
 
 interface Errors {
   [key: string]: string;
 }
-
-import axios from "axios";
-// schema
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("");
@@ -29,19 +27,19 @@ function LoginForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     console.log("hi");
     e.preventDefault();
-    try {
-      console.log("in try");
-      const response = await loginUser({ email, password });
-      // store the token in a cookie
-      document.cookie = `token=${response.token}; path=/`;
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.token}`;
-      console.log(response);
-      navigate("/home");
-    } catch (err) {
-      console.error("Error registering user");
-    }
+    // try {
+    //   console.log("in try");
+    //   const response = await loginUser({ email, password });
+    //   // store the token in a cookie
+    //   document.cookie = `token=${response.token}; path=/`;
+    //   axios.defaults.headers.common[
+    //     "Authorization"
+    //   ] = `Bearer ${response.token}`;
+    //   console.log(response);
+    //   navigate("/home");
+    // } catch (err) {
+    //   console.error("Error registering user");
+    // }
   }
   return (
     <div className="p-12">
@@ -56,9 +54,9 @@ function LoginForm() {
         />
         <p>
           Don't have an account?{" "}
-          <a href="/register" className="text-blue-500 underline">
+          <Link to="/signup" className="text-blue-500 underline">
             Sign Up
-          </a>
+          </Link>
         </p>
       </FormWrapper>
     </div>
