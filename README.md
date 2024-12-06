@@ -2,6 +2,8 @@
 
 ## Description
 Glam Luv is a full-stack e-commerce costmetics web application. The platform allows users to browse, search, and view products, with planned features such as login/signup, product filtering, and a shopping cart.
+## Note
+(Products page API takes 8-10 secs to load as using a third party API which is a bit slow)
 
 ## Tech Stack
 - **Frontend:**
