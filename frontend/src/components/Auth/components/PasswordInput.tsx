@@ -1,14 +1,23 @@
 import React from "react";
-import { VscEye } from "react-icons/vsc";
-import { VscEyeClosed } from "react-icons/vsc";
+import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
-function PasswordInput({
+interface PasswordInputProps {
+  password: string;
+  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  showPassword: boolean;
+  handlePasswordVisibility: () => void;
+  errors: {
+    password?: string;
+  };
+}
+
+const PasswordInput: React.FC<PasswordInputProps> = ({
   password,
   handlePassword,
   showPassword,
   handlePasswordVisibility,
   errors,
-}) {
+}) => {
   return (
     <div className="form-group flex flex-col">
       <label htmlFor="password" className="pr-4 font-semibold mb-2">
@@ -32,9 +41,11 @@ function PasswordInput({
           <VscEyeClosed className="visible" />
         )}
       </span>
-      {errors.password && <p className="">{errors.password}</p>}
+      {errors.password && (
+        <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+      )}
     </div>
   );
-}
+};
 
 export default PasswordInput;

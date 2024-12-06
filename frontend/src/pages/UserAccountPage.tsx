@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 function UserAccountPage() {
   return (
     <div>
-      
+      user account
     </div>
   )
 }

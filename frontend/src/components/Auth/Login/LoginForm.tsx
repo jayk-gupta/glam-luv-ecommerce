@@ -4,45 +4,69 @@ import FormWrapper from "../components/FormWrapper";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
 import axios from "axios";
+import { loginUser } from "../../../redux/authSlice";
 
 interface Errors {
-  [key: string]: string;
+  email?: string;
+  password?: string;
+  [key: string]: string | undefined;
 }
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState<Errors>({});
-  const [showPassword, setshowPassword] = useState<boolean>(true);
+  const [showPassword, setShowPassword] = useState<boolean>(true);
   const navigate = useNavigate();
+
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
+    setErrors((prev) => ({ ...prev, email: "" })); // Clear email error
   }
+
   function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
+    setErrors((prev) => ({ ...prev, password: "" })); // Clear password error
   }
+
   function handlePasswordVisibility() {
-    setshowPassword(!showPassword);
+    setShowPassword(!showPassword);
   }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    console.log("hi");
     e.preventDefault();
-    // try {
-    //   console.log("in try");
-    //   const response = await loginUser({ email, password });
-    //   // store the token in a cookie
-    //   document.cookie = `token=${response.token}; path=/`;
-    //   axios.defaults.headers.common[
-    //     "Authorization"
-    //   ] = `Bearer ${response.token}`;
-    //   console.log(response);
-    //   navigate("/home");
-    // } catch (err) {
-    //   console.error("Error registering user");
-    // }
+
+    // Client-side validation
+    const validationErrors: Errors = {};
+    if (!email) validationErrors.email = "Email is required.";
+    if (!password) validationErrors.password = "Password is required.";
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    try {
+      const response = await loginUser({ email, password });
+
+      // Store the token in a cookie
+      document.cookie = `token=${response.token}; path=/`;
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${response.token}`;
+
+      navigate("/account");
+    } catch (err: any) {
+      // Handle server-side errors
+      if (err.response && err.response.data && err.response.data.errors) {
+        setErrors(err.response.data.errors); // Assumes server returns an `errors` object
+      } else {
+        setErrors({ email: "Invalid email or password." });
+      }
+    }
   }
+
   return (
-    <div className="p-12 ">
+    <div className="p-12">
       <FormWrapper title="Login" handleSubmit={handleSubmit}>
         <EmailInput email={email} handleEmail={handleEmail} errors={errors} />
         <PasswordInput

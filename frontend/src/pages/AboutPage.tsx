@@ -1,12 +1,12 @@
-import React from "react";
+
 
 function AboutPage() {
   return (
     <div className="flex flex-col items-center mb-12">
-      <img src="/public/about us/about_us_model.jpg" className="mb-12" />
+      <img src="/about us/about_us_model.jpg" className="mb-12" />
       <div className="container ">
         <div className="1 flex ">
-          <img src="public/about us/about_us_img_2.jpg" className="w-1/2" />
+          <img src = "/about us/about_us_img_2.jpg" className="w-1/2" />
           <div className="content flex flex-col items-center justify-center">
             <h3 className="text-4xl font-semibold">About Us</h3>
             <p className="px-12 py-6 text-center">
@@ -28,12 +28,12 @@ function AboutPage() {
             </p>
           </div>
           <img
-            src="public/about us/love_inspiring_beauty.jpg"
+            src="/about us/love_inspiring_beauty.jpg"
             className="w-1/2"
           />
         </div>
         <div className="content flex">
-          <img src="public/about us/foundation_for_all.jpg" className="w-1/2" />
+          <img src="/about us/foundation_for_all.jpg" className="w-1/2" />
           <div className="content  flex flex-col items-center justify-center">
             <h3 className="text-4xl font-semibold">Beauty for All</h3>
             <p className="px-12 py-6 text-center">

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { VscAccount } from "react-icons/vsc";
 import { IoBagOutline } from "react-icons/io5";
 import styles from "./navbar.module.css";

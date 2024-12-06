@@ -1,9 +1,15 @@
-import React from 'react'
+
+import { RegisterFormProvider } from '../contexts/SignUpFormContext';
+import SignUpForm from '../components/Auth/SignUp/SignUpForm';
 
 function SignUpPage() {
   return (
-    <div>SignUpPage</div>
-  )
+    <div>
+      <RegisterFormProvider>
+        <SignUpForm />
+      </RegisterFormProvider>
+    </div>
+  );
 }
 
 export default SignUpPage

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { CiPhone } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
 import { CiLocationArrow1 } from "react-icons/ci";

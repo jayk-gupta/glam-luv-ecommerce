@@ -18,9 +18,8 @@ const reviews = [
 ];
 function Reviews() {
   return (
-    <div className="flex flex-col items-center">
-      <div></div>
-      <h3 className="text-4xl font-bold ">See what others are saying</h3>
+    <div className="flex flex-col items-center py-12">
+      <h3 className="text-4xl font-bold pt-12">See what others are saying</h3>
       <div className="reviews flex gap-6 px-48 py-6">
         {reviews.map((review) => (
           <div

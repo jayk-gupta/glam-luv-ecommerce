@@ -1,5 +1,6 @@
-import React from "react";
+
 import styles from "./footer.module.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -33,26 +34,26 @@ function Footer() {
           <div className={styles.customerService}>
             <h4 className={styles.linksTitle}>Customer Service</h4>
             <ul className={styles.linksList}>
-              <li>Contact Us</li>
-              <li>Shipping Policy</li>
-              <li>Return Policy</li>
-              <li>FAQs</li>
-              <li>My Account</li>
+              <Link to="/contact">Contact Us</Link>
+              <Link to="">Shipping Policy</Link>
+              <Link to="">Return Policy</Link>
+              <Link to="">FAQs</Link>
+              <Link to="">My Account</Link>
             </ul>
           </div>
           <div className={styles.explore}>
             <h4 className={styles.linksTitle}>Explore</h4>
             <ul className={styles.linksList}>
-              <li>Our Story</li>
-              <li>Join Our Team</li>
+              <Link to="/about">Our Story</Link>
+              <Link to="">Join Our Team</Link>
             </ul>
           </div>
           <div className={styles.featured}>
             <h4 className={styles.linksTitle}>Featured</h4>
             <ul className={styles.linksList}>
-              <li>Eyeshadow Collections</li>
-              <li>Best Sellers</li>
-              <li>New Arrivals</li>
+              <Link to="">Eyeshadow Collections</Link>
+              <Link to="">Best Sellers</Link>
+              <Link to="">New Arrivals</Link>
             </ul>
           </div>
         </section>
@@ -61,11 +62,11 @@ function Footer() {
       {/* Footer Section */}
       <div className={styles.footerBottom}>
         <ul className={styles.policyLinks}>
-          <li>Privacy Policy</li>
-          <li>Terms & Conditions</li>
-          <li>Terms of Use</li>
-          <li>Terms of Service</li>
-          <li>Legal Disclaimer</li>
+          <Link to="">Privacy Policy</Link>
+          <Link to="">Terms & Conditions</Link>
+          <Link to="">Terms of Use</Link>
+          <Link to="">Terms of Service</Link>
+          <Link to="">Legal Disclaimer</Link>
         </ul>
         <div className={styles.socialMedia}>
           {/* Add Social Media Icons Here */}
