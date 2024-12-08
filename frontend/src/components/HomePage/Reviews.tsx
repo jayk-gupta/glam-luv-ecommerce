@@ -18,19 +18,19 @@ const reviews = [
 ];
 function Reviews() {
   return (
-    <div className="flex flex-col items-center py-12">
-      <h3 className="text-4xl font-bold pt-12">See what others are saying</h3>
-      <div className="reviews flex gap-6 px-48 py-6">
+    <div className="flex flex-col items-center py-12 md:mx-6">
+      <h3 className="lg:text-4xl md:text-2xl font-bold pt-12 text-xl">See what others are saying</h3>
+      <div className="reviews flex gap-6 lg:px-48 py-6 sm:flex-col sm:items-center flex-col md:flex-row md:items-stretch items-center">
         {reviews.map((review) => (
           <div
             key={review.title}
-            className="flex flex-col justify-between gap-6 w-4/5 shadow-xl p-12"
+            className="flex flex-col justify-between gap-6 sm:w-4/5 shadow-xl lg:p-12 md:p-4 sm:p-4 w-4/5 p-6 text-sm "
           >
           <Rating/>
-            <p className="text-lg">{review.text}</p>
+            <p className=" md:text-lg">{review.text}</p>
             <div>
-              <p className="font-semibold text-black">{review.title}</p>
-              <p className="text-gray-600">{review.subtitle}</p>
+              <p className="font-semibold text-black md:text-sm">{review.title}</p>
+              <p className="text-gray-600 md:text-sm">{review.subtitle}</p>
             </div>
           </div>
         ))}

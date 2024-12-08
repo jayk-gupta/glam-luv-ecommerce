@@ -1,8 +1,8 @@
 .navbarContainer{
-    @apply bg-secondary flex justify-around p-4 items-center text-2xl
+    @apply bg-secondary flex justify-between p-4 items-center lg:text-2xl md:w-full md:text-xl md:justify-around
 }
 .navLinks{
-    @apply flex gap-4 
+    @apply flex gap-4 text-sm sm:text-lg lg:text-2xl
 }
 .navlink{
   @apply  hover:cursor-pointer hover:text-primary
@@ -17,5 +17,5 @@
   font-family: "Niconne", cursive;
   font-weight: 500;
   font-style: normal;
-  @apply text-4xl text-primary
+  @apply lg:text-4xl text-primary md:text-2xl text-lg
 }

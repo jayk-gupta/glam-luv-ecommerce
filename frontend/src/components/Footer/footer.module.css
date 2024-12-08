@@ -1,47 +1,52 @@
 .footer {
-    @apply px-48 py-12 flex flex-col bg-secondary
+  @apply lg:px-48 lg:py-12 flex flex-col bg-secondary md:p-6 sm:py-6 py-2;
 }
-.header{
-    @apply flex pb-12 
+.header {
+  @apply flex pb-12 sm:flex-col md:flex-row sm:items-center flex-col gap-12 items-center;
 }
 .links {
-    @apply flex gap-32 ml-12
+  @apply flex lg:gap-32 md:gap-6 sm:gap-12 sm:mt-6 flex-col items-center gap-12 md:flex-row md:items-start;
+}
+.linksList {
+  @apply flex flex-col gap-2 items-center
+}
+.linksTitle {
+  @apply font-bold text-xl mb-4 text-center;
 }
 
 .subscribe {
-    @apply  flex flex-col gap-6 w-[40rem]  px-12
+  @apply flex flex-col sm:gap-6 gap-4 lg:w-[40rem] md:w-1/2  px-12;
 }
 
 .subscribe h3 {
-    @apply text-2xl font-bold
+  @apply text-2xl font-bold;
 }
 
 .subscribeForm {
-    @apply  flex flex-col gap-4 items-start 
+  @apply flex flex-col gap-4 items-start;
 }
 
 .subscribeForm input {
-    @apply bg-white border-2 p-4 w-full
+  @apply bg-white border-2 lg:p-4 w-full p-2;
 }
 
 .privacyText {
-    @apply text-sm w-full
+  @apply text-sm w-full;
 }
-.policyLinks{
-    @apply flex px-4 gap-4
+.policyLinks {
+  @apply flex px-4 gap-4 sm:text-sm;
 }
-.subscribeButton{
-@apply bg-[#EB008B] w-full p-4 text-white font-bold uppercase
+.subscribeButton {
+  @apply bg-[#EB008B] w-full lg:p-4 p-2 text-white font-bold uppercase;
 }
-.linksTitle{
-    @apply font-bold text-xl mb-4
+
+.footerBottom {
+  @apply flex flex-col items-center gap-2;
 }
-.footerBottom{
-   @apply flex flex-col items-center gap-2
+.policyLinks {
+  @apply border-y-[0.1px] border-gray-400 sm:py-4 w-full flex justify-center text-[0.8rem] py-2;
+  
 }
-.policyLinks{
-    @apply border-y-[0.1px] border-gray-400 py-4 w-full flex justify-center
-}
-.linksList{
-@apply flex flex-col gap-4
+.copyright{
+    @apply sm:text-sm text-[0.6rem]
 }

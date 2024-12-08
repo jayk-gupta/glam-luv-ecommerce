@@ -11,9 +11,7 @@
   white-space: nowrap;
   animation: marquee 60s linear infinite;
 }
-.bannerText span{
-    @apply font-bold
-}
+
 /* Keyframes for marquee effect */
 @keyframes marquee {
   from {
