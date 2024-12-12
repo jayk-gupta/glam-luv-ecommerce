@@ -1,21 +1,24 @@
-import { useEffect } from "react";
+
 import Categories from "../components/ProductsPage/ShopByCategory/Categories";
 import TagUsBanner from "../components/HomePage/TagUs Banner/TagUsBanner";
 import Reviews from "../components/HomePage/Reviews";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { useEffect } from "react";
 import { fetchProducts } from "../redux/productsSlice";
+import CategoriesNav from "../components/Navbar/CategoriesNav";
+
 
 function HomePage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { filters } = useSelector((state: RootState) => state.products);
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
-    dispatch(fetchProducts(filters));
-  }, [dispatch, filters]);
+    dispatch(fetchProducts({}))
+  },[dispatch])
+
   return (
     <div className="  ">
+   
       <img
         src="/LAG_holiday_shine_collection_web_desktop_banner_2.jpeg"
         className="md:w-full"

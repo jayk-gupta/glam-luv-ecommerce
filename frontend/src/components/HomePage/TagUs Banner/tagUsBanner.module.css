@@ -21,3 +21,7 @@
     transform: translateX(-100%);
   }
 }
+
+.text{
+@apply px-2  sm:text-sm sm:px-2  text-sm  md:text-xl md:px-4
+}

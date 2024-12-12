@@ -1,18 +1,21 @@
-import  { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch ,RootState} from "../../../redux/store";
-import { fetchProducts } from "../../../redux/productsSlice";
+import { AppDispatch, RootState} from "../../../redux/store";
+
 import ProductCard from "../Product/ProductCard";
+import { useEffect } from "react";
+import { fetchProducts } from "../../../redux/productsSlice";
 
 function Products() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { products, filters, loading, error } = useSelector(
+ const dispatch = useDispatch<AppDispatch>();
+  const { products, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+ useEffect(() => {
+   // Fetch products with the filter brand=maybelline
+   dispatch(fetchProducts({ product_type: "lipstick" }));
+ }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchProducts(filters));
-  }, [dispatch, filters]);
 
   return (
     <div>
