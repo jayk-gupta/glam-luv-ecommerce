@@ -5,16 +5,19 @@ import { AppDispatch, RootState} from "../../../redux/store";
 import ProductCard from "../Product/ProductCard";
 import { useEffect } from "react";
 import { fetchProducts } from "../../../redux/productsSlice";
+import { useLocation } from "react-router-dom";
 
 function Products() {
+  const { state } = useLocation()
+  const title = state.title 
  const dispatch = useDispatch<AppDispatch>();
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products
   );
  useEffect(() => {
    // Fetch products with the filter brand=maybelline
-   dispatch(fetchProducts({ product_type: "lipstick" }));
- }, [dispatch]);
+   dispatch(fetchProducts({ product_type: title }));
+ }, [title,dispatch]);
 
 
   return (

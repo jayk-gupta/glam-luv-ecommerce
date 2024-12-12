@@ -1,3 +1,5 @@
+import { Link, useNavigate } from "react-router-dom";
+
 const categories = [
   {
     category: "Face",
@@ -16,7 +18,14 @@ const categories = [
     products: ["Nail Polish"],
   },
 ];
-function CategoriesNav() {
+function CategoriesNav({ closeCategoryNav }) {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (product:string) => {
+    closeCategoryNav(false)
+    navigate("/products", { state: { title: product } });
+  };
+
   return (
     <div className="absolute bg-white z-10 flex justify-center h-80 items-center w-full">
       <div className="nav flex gap-32">
@@ -34,6 +43,7 @@ function CategoriesNav() {
                 <li
                   className="hover:border-b-2 hover:border-primary hover:cursor-pointer duration-200 border-b-2 border-white"
                   style={{ width: "fit-content" }}
+                  onClick={() => handleCategoryClick(product)}
                 >
                   {product}
                 </li>

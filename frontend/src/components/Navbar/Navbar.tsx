@@ -16,22 +16,28 @@ function Navbar() {
     <>
       <nav className={styles.navbarContainer}>
         <Link to="/">
-          <div className={styles.logo}>Glam Luv</div>
+          <div className={styles.logo} onMouseEnter={handleMouseLeave}>
+            Glam Luv
+          </div>
         </Link>
 
         <div className={styles.navigation}>
           <ul className={styles.navLinks}>
-            <Link className={styles.navlink} to="/about">
+            <Link
+              className={styles.navlink}
+              onMouseEnter={handleMouseLeave}
+              to="/about"
+            >
               About
             </Link>
-            <div
-              className={styles.navlink}
-              onMouseEnter={handleMouseEnter}
-            
-            >
+            <div className={styles.navlink} onMouseEnter={handleMouseEnter}>
               Products
             </div>
-            <Link className={styles.navlink} to="/contact">
+            <Link
+              className={styles.navlink}
+              onMouseEnter={handleMouseLeave}
+              to="/contact"
+            >
               Contact Us
             </Link>
           </ul>
@@ -46,12 +52,8 @@ function Navbar() {
 
       {/* Categories Navigation */}
       {showCategories && (
-        <div
-          className={styles.categoriesNav}
-     
-          onMouseLeave={handleMouseLeave}
-        >
-          <CategoriesNav />
+        <div className={styles.categoriesNav} onMouseLeave={handleMouseLeave}>
+          <CategoriesNav closeCategoryNav={setShowCategories} />
         </div>
       )}
     </>
