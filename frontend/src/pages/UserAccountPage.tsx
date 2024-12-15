@@ -1,11 +1,15 @@
+import { useSelector } from "react-redux";
+import LoginForm from "../components/Auth/Login/LoginForm";
 
+import { RootState } from "../redux/store";
 
 function UserAccountPage() {
-  return (
-    <div>
-      user account
-    </div>
-  )
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+  console.log(isAuthenticated)
+  return <div>{isAuthenticated ?
+    <div>user account</div> : <LoginForm />}</div>;
 }
 
-export default UserAccountPage
+export default UserAccountPage;

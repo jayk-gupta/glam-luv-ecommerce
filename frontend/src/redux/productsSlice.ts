@@ -7,6 +7,10 @@ interface Product {
   price: string;
   brand: string;
   [key: string]: any;
+  product_type: string;
+  category: string;
+  img_url: string;
+  api_featured_image:string
 }
 
 interface Filters {

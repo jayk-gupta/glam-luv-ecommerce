@@ -1,5 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+type CategoriesNavProps = {
+  closeCategoryNav : (value:boolean) => void
+}
 const categories = [
   {
     category: "Face",
@@ -18,7 +20,7 @@ const categories = [
     products: ["Nail Polish"],
   },
 ];
-function CategoriesNav({ closeCategoryNav }) {
+function CategoriesNav({ closeCategoryNav }:CategoriesNavProps) {
   const navigate = useNavigate();
 
   const handleCategoryClick = (product:string) => {
@@ -39,7 +41,7 @@ function CategoriesNav({ closeCategoryNav }) {
               {category.category}
             </h4>
             <ul className="flex flex-col gap-4">
-              {category.products.map((product, index) => (
+              {category.products.map((product) => (
                 <li
                   className="hover:border-b-2 hover:border-primary hover:cursor-pointer duration-200 border-b-2 border-white"
                   style={{ width: "fit-content" }}

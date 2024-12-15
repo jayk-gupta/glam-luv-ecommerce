@@ -1,5 +1,5 @@
 .footer {
-  @apply lg:px-48 lg:py-12 flex flex-col bg-secondary md:p-6 sm:py-6 py-2;
+  @apply lg:px-48 lg:pt-12 flex flex-col bg-secondary md:p-6 sm:py-6 py-2;
 }
 .header {
   @apply flex pb-12 sm:flex-col md:flex-row sm:items-center flex-col gap-12 items-center;

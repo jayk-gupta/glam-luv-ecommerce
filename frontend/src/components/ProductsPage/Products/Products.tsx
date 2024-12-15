@@ -1,29 +1,47 @@
-
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState} from "../../../redux/store";
-
-import ProductCard from "../Product/ProductCard";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import ProductCard from "../Product/ProductCard";
 import { fetchProducts } from "../../../redux/productsSlice";
 import { useLocation } from "react-router-dom";
 
-function Products() {
-  const { state } = useLocation()
-  const title = state.title 
- const dispatch = useDispatch<AppDispatch>();
-  const { products, loading, error } = useSelector(
-    (state: RootState) => state.products
-  );
- useEffect(() => {
-   // Fetch products with the filter brand=maybelline
-   dispatch(fetchProducts({ product_type: title }));
- }, [title,dispatch]);
+interface ProductCardProps {
+  id: number;
+  name: string;
+  brand: string;
+  img_url: string;
+  price: string;
+  category: string;
+  product_type: string;
+  api_featured_image:string
+}
 
+function Products() {
+  const { state } = useLocation();
+  const title: string | undefined = state?.title;
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const products: ProductCardProps[] = useSelector(
+    (state: RootState) => state.products.products
+  );
+  const loading: boolean = useSelector(
+    (state: RootState) => state.products.loading
+  );
+  const error: string | null = useSelector(
+    (state: RootState) => state.products.error
+  );
+
+  // Fetch products on mount or title change
+  useEffect(() => {
+    if (title) {
+      dispatch(fetchProducts({ product_type: title }));
+    }
+  }, [title, dispatch]);
 
   return (
     <div>
-      <h2 className="text-4xl py-4 font-bold">All Products</h2>
-      {/* Show a loading spinner if data is being fetched */}
+      <h2 className="text-4xl py-4 font-bold">{title}</h2>
       {loading ? (
         <div className="flex justify-center items-center py-10">
           <div>
@@ -34,11 +52,10 @@ function Products() {
           </div>
         </div>
       ) : error ? (
-        // Show an error message if fetching fails
         <p className="text-red-500 text-center">Error: {error}</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map((product: ProductCardProps) => (
             <ProductCard
               key={product.id}
               name={product.name}
@@ -46,10 +63,9 @@ function Products() {
               img_url={product.api_featured_image}
               price={product.price}
               category={product.category}
-              product_api_url={product.product_api_url}
-              product_colors={product.product_colors}
               product_type={product.product_type}
               id={product.id}
+              api_featured_image={product.api_featured_image}
             />
           ))}
         </div>

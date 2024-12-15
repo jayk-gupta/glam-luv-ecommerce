@@ -27,14 +27,16 @@ interface AuthState {
 
 // Initial state
 const initialState: AuthState = {
-  isAuthenticated: false,
+  isAuthenticated: JSON.parse(localStorage.getItem("isAuthenticated") || "false"),
   user: null,
 };
 
 // Async actions
 export const registerUser = async (userData: UserData): Promise<any> => {
   try {
-    const response = await axios.post(`${API_URL}/register`, userData);
+    const response = await axios.post(`${API_URL}/register`, userData, {
+      withCredentials: true,
+    });
     console.log("User registered successfully:", response);
     return response.data;
   } catch (err) {
@@ -45,8 +47,11 @@ export const registerUser = async (userData: UserData): Promise<any> => {
 
 export const loginUser = async (credentials: Credentials): Promise<any> => {
   try {
-    const response = await axios.post(`${API_URL}/login`, credentials);
+    const response = await axios.post(`${API_URL}/login`, credentials, {
+      withCredentials: true,
+    });
     console.log("User logged in successfully:", response);
+
     return response.data;
   } catch (err) {
     console.error("Error logging in:", err);
@@ -70,13 +75,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<User>) => {
-      state.isAuthenticated = true;
-      state.user = action.payload;
+    login: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
+      localStorage.setItem("isAuthenticated", JSON.stringify(action.payload));
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.user = null;
+      localStorage.removeItem("isAuthenticated")
     },
   },
 });

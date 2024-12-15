@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { fetchProducts } from "../redux/productsSlice";
-import CategoriesNav from "../components/Navbar/CategoriesNav";
+
 
 
 function HomePage() {
