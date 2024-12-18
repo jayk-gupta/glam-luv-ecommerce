@@ -9,7 +9,7 @@ Glam Luv is a full-stack e-commerce costmetics web application. The platform all
 - **Frontend:**
   - React.js
   - Tailwind CSS
-  - Axios (for API requests)
+  - Axios 
 - **Backend:**
   - Node.js
   - Express.js
