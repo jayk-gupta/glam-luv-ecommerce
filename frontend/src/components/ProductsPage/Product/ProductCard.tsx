@@ -1,31 +1,29 @@
 import React from "react";
 
 interface ProductCardProps {
-  id: number;
-  name: string;
-  brand: string;
-  img_url: string;
-  price: string;
-  category: string;
-  // product_colors: { hex_value: string; colour_name: string }[]; // Assuming structure from API
-  product_type: string;
-  api_featured_image:string
+  product: {
+    id: number;
+    name: string;
+    brand: string;
+    api_featured_image: string;
+    price: string;
+    category: string;
+    product_type: string;
+  };
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  id,
-  name,
-  brand,
-  img_url,
-  price,
-  category,
-}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { id, name, brand, api_featured_image, price, category } = product;
   return (
     <div
       key={id}
       className="bg-white rounded-lg p-4 shadow-md flex justify-between flex-col gap-2"
     >
-      <img src={img_url} alt={name} className=" object-center rounded-lg p-2" />
+      <img
+        src={api_featured_image}
+        alt={name}
+        className=" object-center rounded-lg p-2"
+      />
       <div className="content">
         <h3 className="font-bold capitalize xl: text-sm">
           {brand} <span>{name}</span>

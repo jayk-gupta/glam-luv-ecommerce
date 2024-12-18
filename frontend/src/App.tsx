@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./pages/HomePage";
@@ -14,6 +11,7 @@ import ProductsPage from "./pages/ProductsPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ContactUs from "./pages/ContactUs";
+import Product from "./components/ProductsPage/Product/Product";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,22 +32,27 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <UserAccountPage />,
-      }, {
+      },
+      {
         path: "/products",
-        element : <ProductsPage/>
-      }
-      , {
+        element: <ProductsPage />,
+      },
+      {
+        path: "/product/:id",
+        element: <Product />,
+      },
+      {
         path: "/login",
-        element : <LoginPage/>
-      }
-      , {
+        element: <LoginPage />,
+      },
+      {
         path: "/signup",
-        element : <SignUpPage/>
-      }
-      , {
+        element: <SignUpPage />,
+      },
+      {
         path: "/contact",
-        element : <ContactUs/>
-      }
+        element: <ContactUs />,
+      },
     ],
   },
 ]);
