@@ -27,10 +27,10 @@ const ProductColors: React.FC<ProductColorsProps> = ({ colors }) => {
           id=""
           value={selectedColor}
           onChange={handleSelectChange}
-          className="w-full p-2 border bg-[#F8F8F8] rounded-lg"
+          className="w-full p-2  bg-[#F8F8F8] rounded-lg"
         >
           {colors.map((color, index) => (
-            <option key={index} value={color.colour_name}>
+            <option className={ `bg-${color.hex_value}`} key={index} value={color.colour_name}>
               <span
                 className="color-swatch w-6 h-6 rounded-full border"
                 style={{ backgroundColor: color.hex_value }}
@@ -43,7 +43,7 @@ const ProductColors: React.FC<ProductColorsProps> = ({ colors }) => {
       </div>
 
       {/* Display colors below */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 py-6 flex-wrap">
         {colors.map((color, index) => (
           <div
             key={index}
@@ -60,7 +60,7 @@ const ProductColors: React.FC<ProductColorsProps> = ({ colors }) => {
               }`}
             >
               <div
-                className="color-swatch w-6 h-6 rounded-full border"
+                className="color-swatch w-12 h-12 rounded-full border"
                 style={{ backgroundColor: color.hex_value }}
                 title={color.colour_name}
               ></div>

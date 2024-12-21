@@ -15,11 +15,11 @@ function Product() {
     return <p>No product details available.</p>;
   }
   return (
-    <div className="flex  border-2 justify-center p-12  my-32 gap-32 w-full">
+    <div className="flex   justify-center mt-24  mb-32 gap-32 w-full">
       <div>
         <img
           src={product.api_featured_image}
-          className="object-center rounded-lg p-2"
+          className="object-center max-h-[700px]  rounded-lg p-2"
           alt={product.name}
         />
       </div>
@@ -43,7 +43,7 @@ function Product() {
           <ProductValue />
           <button className={styles.Btn}>Add to Bag</button>
         </div>
-        <p className="">{product.description}</p>
+        <p className="text-lg">{product.description}</p>
       </div>
     </div>
   );
