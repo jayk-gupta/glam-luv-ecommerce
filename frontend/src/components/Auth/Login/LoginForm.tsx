@@ -4,9 +4,12 @@ import FormWrapper from "../components/FormWrapper";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
 import axios from "axios";
-import { login, loginUser, logoutUser } from "../../../redux/authSlice";
+// import { login, loginUser, logoutUser } from "../../../redux/AuthAPI";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
+import { useLoginUserMutation } from "../../../redux/AuthAPI";
+import { setAuthState } from "../../../redux/AuthSlice";
+
 
 interface Errors {
   email?: string;
@@ -19,6 +22,8 @@ function LoginForm() {
   const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState<Errors>({});
   const [showPassword, setShowPassword] = useState<boolean>(true);
+
+  const [loginUser, { isLoading }] = useLoginUserMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -50,17 +55,20 @@ function LoginForm() {
     }
 
     try {
-      const response = await loginUser({ email, password });
+      const response = await loginUser({ email, password }).unwrap();
+      dispatch(
+        setAuthState({isAuthenticated:true})
+       )
       console.log(response);
       // Store the token in a cookie
       document.cookie = `token=${response.token}; path=/`;
-      console.log(document.cookie);
+      // console.log(document.cookie);
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${response.token}`;
-      dispatch(login(true));
+
+      // dispatch(login(true));
       navigate("/account");
-      
     } catch (err: any) {
       // Handle server-side errors
       if (err.response && err.response.data && err.response.data.errors) {

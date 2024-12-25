@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import { registerUser } from "../redux/authSlice";
+import { useRegisterUserMutation } from "../redux/AuthAPI";
 
 // schema
 const schema = z.object({
@@ -47,7 +47,7 @@ export const RegisterFormProvider: React.FC<{ children: ReactNode }> = ({
   const [errors, setErrors] = useState<FormErrors>({});
   const [showPassword, setshowPassword] = useState<boolean>(true);
   const navigate = useNavigate();
-
+  const [registerUser] = useRegisterUserMutation();
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const validationResult = schema.safeParse({
@@ -71,9 +71,9 @@ export const RegisterFormProvider: React.FC<{ children: ReactNode }> = ({
       return;
     }
     try {
-     await registerUser({ email, password });
+      await registerUser({ email, password });
       alert("Registration successful");
-      
+
       navigate("/login");
     } catch (err) {
       console.error("Error registering user");

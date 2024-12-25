@@ -2,19 +2,9 @@
 import Categories from "../components/ProductsPage/ShopByCategory/Categories";
 import TagUsBanner from "../components/HomePage/TagUs Banner/TagUsBanner";
 import Reviews from "../components/HomePage/Reviews";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
-import { useEffect } from "react";
-import { fetchProducts } from "../redux/productsSlice";
-
 
 
 function HomePage() {
-  const dispatch = useDispatch<AppDispatch>()
-
-  useEffect(() => {
-    dispatch(fetchProducts({}))
-  },[dispatch])
 
   return (
     <div className="  ">

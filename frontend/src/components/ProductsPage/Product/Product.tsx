@@ -1,19 +1,20 @@
-import { RootState } from "../../../redux/store";
-import { useSelector } from "react-redux";
+// import { RootState } from "../../../redux/store";
 import { useParams } from "react-router-dom";
 import styles from "./product.module.css";
 import ProductColors from "./ProductColors";
 import ProductValue from "./product value/ProductValue";
+import { useGetProductsQuery } from "../../../redux/productsSlice";
 
 function Product() {
   const { id } = useParams<{ id: string }>();
-  const product = useSelector((state: RootState) =>
-    state.products.products.find((product) => product.id === Number(id))
-  );
+  const { data: products, isLoading, error } = useGetProductsQuery({});
 
-  if (!product) {
-    return <p>No product details available.</p>;
-  }
+  const product = products?.find((prod) => prod.id === parseInt(id || "", 10));
+
+  if (!product) return <p>No product details available.</p>;
+  if (isLoading) return <p>Loading product details...</p>;
+  if (error) return <p>Error fetching product details.</p>;
+
   return (
     <div className="flex   justify-center mt-24  mb-32 gap-32 w-full">
       <div>
@@ -31,7 +32,8 @@ function Product() {
           {product.name}
         </h2>
         <p className="text-xl">
-          {product.price_sign}{product.price}
+          {product.price_sign}
+          {product.price}
         </p>
         {/* <p>Category: {product.category}</p>
         <p>Type: {product.product_type}</p> */}
@@ -50,5 +52,3 @@ function Product() {
 }
 
 export default Product;
-
-
