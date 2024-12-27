@@ -23,7 +23,7 @@ function LoginForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
-  const [loginUser, { isLoading }] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -80,7 +80,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="p-12">
+    <div className="p-12"> 
       <FormWrapper title="Login" handleSubmit={handleSubmit}>
         <EmailInput email={email} handleEmail={handleEmail} errors={errors} />
         <PasswordInput
