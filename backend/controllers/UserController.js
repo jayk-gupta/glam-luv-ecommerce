@@ -1,5 +1,31 @@
 const { generateToken } = require("../jwt");
-const User = require("../models/User")
+const User = require("../models/User");
+const path = require("path");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // destination to save uploads
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
+exports.uploadUserImage = (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "no file uploaded" });
+  }
+
+  const imgUrl = `${req.protocol}://${req.get("host")}/uploads/${
+    req.file.filename
+  }`;
+
+  res.status(200).json({ imgUrl });
+};
+
 exports.loginUser = async (req, res) => {
   try {
     // extract username and password from body
