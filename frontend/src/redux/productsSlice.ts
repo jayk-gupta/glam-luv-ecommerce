@@ -29,6 +29,7 @@ export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://makeup-api.herokuapp.com/api/v1/",
+    credentials: "include"
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], Filters>({

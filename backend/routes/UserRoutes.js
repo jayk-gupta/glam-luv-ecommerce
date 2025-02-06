@@ -6,7 +6,7 @@ const multer = require("multer")
 // router.get("/", jwtAuthMiddleware, UserController.getAllUsers);
 
 // upload user image
-router.post("/upload", upload.single("image"), UserController.uploadUserImage)
+// router.post("/upload", upload.single("image"), UserController.uploadUserImage)
 // Auth routes
 router.post("/register", UserController.registerUser);
 router.post("/login", UserController.loginUser);

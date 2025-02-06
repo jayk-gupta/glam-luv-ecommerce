@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ProductValue: React.FC = () => {
+const ProductCartValue: React.FC = () => {
   const [itemValue, setItemValue] = useState(0);
     const maxValue = 10
     const minVlaue = 0;
@@ -15,4 +15,4 @@ const ProductValue: React.FC = () => {
     </div>
   );
 };
-export default ProductValue
+export default ProductCartValue

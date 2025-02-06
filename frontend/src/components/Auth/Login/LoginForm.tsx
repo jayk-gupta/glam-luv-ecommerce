@@ -39,7 +39,7 @@ function LoginForm() {
   }
 
   function handlePasswordVisibility() {
-    setShowPassword(!showPassword);
+    setShowPassword((prev) => !prev);
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -57,12 +57,12 @@ function LoginForm() {
     try {
       const response = await loginUser({ email, password }).unwrap();
       dispatch(
-        setAuthState({isAuthenticated:true})
-       )
+        setAuthState({ isAuthenticated: true })
+      )
       console.log(response);
       // Store the token in a cookie
       document.cookie = `token=${response.token}; path=/`;
-      // console.log(document.cookie);
+      console.log(document.cookie);
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${response.token}`;
@@ -70,9 +70,8 @@ function LoginForm() {
       // dispatch(login(true));
       navigate("/account");
     } catch (err: any) {
-      // Handle server-side errors
-      if (err.response && err.response.data && err.response.data.errors) {
-        setErrors(err.response.data.errors); // Assumes server returns an `errors` object
+      if (err?.data?.message) {
+        setErrors({ email: err.data.message });
       } else {
         setErrors({ email: "Invalid email or password." });
       }

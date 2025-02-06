@@ -8,3 +8,11 @@ const cartItemSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("CartItem", cartItemSchema);
+
+/*
+id
+description
+name
+price
+product_type
+*/ 

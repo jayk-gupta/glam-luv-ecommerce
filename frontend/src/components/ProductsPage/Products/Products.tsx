@@ -1,4 +1,4 @@
-import ProductCard from "../Product/ProductCard";
+import ProductCard from "../../Product/Product Card/ProductCard";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./products.module.css";
 import { useGetProductsQuery } from "../../../redux/productsSlice";

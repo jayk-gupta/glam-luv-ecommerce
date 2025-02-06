@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { setAuthState } from "./AuthSlice";
+import axios from "axios";
 
 const API_URL = "http://localhost:3000/user";
 
@@ -17,6 +19,9 @@ interface User {
   name: string;
   email: string;
 }
+interface AuthReponse {
+  token:string
+}
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -32,7 +37,7 @@ export const authApi = createApi({
         body: userData,
       }),
     }),
-    loginUser: builder.mutation<User, Credentials>({
+    loginUser: builder.mutation<AuthReponse, Credentials>({
       query: (credentials) => ({
         url: "/login",
         method: "POST",
@@ -43,6 +48,12 @@ export const authApi = createApi({
       query: () => ({
         url: "/logout",
         method: "POST",
+        async onQueryStarted(_, { dispatch }) {
+          document.cookie =
+            "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+          axios.defaults.headers.common["Authorization"] = "";
+          dispatch(setAuthState({ isAuthenticated: false }));
+        },
       }),
     }),
   }),
