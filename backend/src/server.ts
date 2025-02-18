@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import productRoutes from "./routes/productRoutes";
-import getAllProducts from "./routes/getAllProducts";
 import mongoose from "mongoose";
 const app = express();
 app.use(express.json());
@@ -11,6 +10,9 @@ app.use("/products", productRoutes);
 app.get("/", (req: Request, res: Response) => {
   res.send("homepage");
 });
+
+app.use("/api/products", productRoutes);
+
 // CONFIGURATIONS
 const PORT = process.env.PORT || 3000;
 const PASSWORD = process.env.PASSWORD;
@@ -21,6 +23,8 @@ mongoose
   .connect(mongoURL)
   .then(() => console.log("Connected to MongoDB server"))
   .catch((err) => console.error("MongoDB connection error", err));
-app.listen(5000, () => {
+
+
+app.listen(PORT, () => {
   console.log("app is running on port 5000");
 });
