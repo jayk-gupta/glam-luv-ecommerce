@@ -1,31 +1,43 @@
 import { useNavigate } from "react-router-dom";
 type CategoriesNavProps = {
-  closeCategoryNav : (value:boolean) => void
-}
+  closeCategoryNav: (value: boolean) => void;
+};
 const categories = [
   {
     category: "Face",
-    products: ["Blush", "Bronzer", "Foundation"],
+    products: [
+      { ui: "Blush", api: "blush" },
+      { ui: "Bronzer", api: "bronzer" },
+      { ui: "Foundation", api: "foundation" },
+    ],
   },
   {
     category: "Eyes",
-    products: ["Eyebrow", "Eyeliner", "Eyeshadow", "Mascara"],
+    products: [
+      { ui: "Eyebrow", api: "eyebrow" },
+      { ui: "Eyeliner", api: "eyeliner" },
+      { ui: "Eyeshadow", api: "eyeshadow" },
+      { ui: "Mascara", api: "mascara" },
+    ],
   },
   {
     category: "Lips",
-    products: ["Lip liner", "Lipstick"],
+    products: [
+      { ui: "Lip Liner", api: "lip_liner" },
+      { ui: "Lipstick", api: "lipstick" },
+    ],
   },
   {
     category: "Nails",
-    products: ["Nail Polish"],
+    products: [{ ui: "Nail Polish", api: "nail_polish" }],
   },
 ];
-function CategoriesNav({ closeCategoryNav }:CategoriesNavProps) {
+function CategoriesNav({ closeCategoryNav }: CategoriesNavProps) {
   const navigate = useNavigate();
 
-  const handleCategoryClick = (product:string) => {
-    closeCategoryNav(false)
-    navigate("/products", { state: { title: product } });
+  const handleCategoryClick = (product: { ui: string; api: string }) => {
+    closeCategoryNav(false);
+    navigate("/products", { state: { title: product.api } });
   };
 
   return (
@@ -47,7 +59,7 @@ function CategoriesNav({ closeCategoryNav }:CategoriesNavProps) {
                   style={{ width: "fit-content" }}
                   onClick={() => handleCategoryClick(product)}
                 >
-                  {product}
+                  {product.ui}
                 </li>
               ))}
             </ul>

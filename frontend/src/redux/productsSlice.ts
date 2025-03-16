@@ -1,45 +1,50 @@
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
 interface Product {
-  id: number;
+  _id: string;
   name: string;
   price: string;
   brand: string;
-  [key: string]: any;
   product_type: string;
   category: string;
-  img_url: string;
   api_featured_image: string;
+  tag_list?: string[]
 }
 
 interface Filters {
   product_type?: string;
-  product_category?: string;
-  product_tags?: string[];
+  category?: string;
   brand?: string;
-  price_greater_than?: number;
-  price_less_than?: number;
-  rating_greater_than?: number;
-  rating_less_than?: number;
+  tag_list?: string[];
+  page?:number
 }
+interface ProductsResponse {
+  products: Product[];
+  currentPage: number;
+  totalPages: number;
+}
+
 
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://makeup-api.herokuapp.com/api/v1/",
-    credentials: "include"
+    baseUrl: "http://localhost:3000",
+    credentials: "include",
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<Product[], Filters>({
+    getProducts: builder.query<ProductsResponse, Filters>({
       query: (filters) => ({
-        url: "products.json",
+        url: "/products",
         params: {
           ...filters,
-          product_tags: filters.product_tags?.join(","),
+          page: filters.page,
+          tag_list: filters.tag_list ? filters.tag_list : undefined,
         },
       }),
+    }),
+    getProductById: builder.query<Product, string>({
+      query: (id) => `/products/${id}`,
     }),
   }),
 });

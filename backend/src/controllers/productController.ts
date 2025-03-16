@@ -1,13 +1,15 @@
 import express, { query, Request, Response, Router } from "express";
 import Product from "../models/Product";
-
+import mongoose from "mongoose";
 
 export const getProductById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id || typeof id !== "string") {
-      return res.status(400).json({ message: "Product id is required" });
+    // Validate if the ID is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid product ID format" });
     }
+
     const product = await Product.findById(id);
     return res.json(product);
   } catch (error) {
@@ -18,7 +20,7 @@ export const getProductById = async (req: Request, res: Response) => {
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
-    const {product_type, category, brand, tag_list } = req.query;
+    const { product_type, category, brand, tag_list, page = "1" } = req.query;
 
     const matchFilter: any = {};
     if (category && typeof category === "string") {
@@ -34,13 +36,18 @@ export const getProducts = async (req: Request, res: Response) => {
       const tagArray = Array.isArray(tag_list) ? tag_list : [tag_list];
       matchFilter.tag_list = { $all: tagArray };
     }
-
+    const pageNumber = parseInt(page as string) || 1;
+    const limit = 10;
+    const skip = (pageNumber - 1) * limit;
     const products = await Product.aggregate([
       {
         $match: matchFilter,
       },
       {
-        $limit: 10,
+        $skip: skip,
+      },
+      {
+        $limit: limit,
       },
       {
         $project: {
@@ -61,7 +68,14 @@ export const getProducts = async (req: Request, res: Response) => {
         .json({ message: "No products found with given filters" });
     }
 
-    return res.json(products);
+    const totalProducts = await Product.countDocuments(matchFilter);
+    const totalPages = Math.ceil(totalProducts / limit);
+
+    return res.json({
+      products,
+      currentPage: pageNumber,
+      totalPages,
+    });
   } catch (error) {
     console.error("Error fetching filtered products:", error);
     return res.status(500).json({ message: "Internal Server Error" });

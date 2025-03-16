@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-   "dev": "nodemon --exec ts-node src/server.ts --watch src --ext ts",
+    "dev": "nodemon --exec ts-node src/server.ts --watch src --ext ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",

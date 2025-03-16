@@ -2,16 +2,24 @@ import express, { Request, Response } from "express";
 import productRoutes from "./routes/productRoutes";
 import mongoose from "mongoose";
 const app = express();
+const cors = require("cors")
+const corsOptions = {
+  origin: "http://localhost:5173", // Replace with your frontend URL
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow cookies if using authentication
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 require("dotenv").config();
-app.use("/products", productRoutes);
 
+app.use("/products", productRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("homepage");
 });
-
-app.use("/api/products", productRoutes);
+// app.use("/api/products", productRoutes);
 
 // CONFIGURATIONS
 const PORT = process.env.PORT || 3000;
@@ -24,7 +32,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB server"))
   .catch((err) => console.error("MongoDB connection error", err));
 
-
 app.listen(PORT, () => {
-  console.log("app is running on port 5000");
+  console.log("app is running on port 3000");
 });

@@ -1,8 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema, Types } from "mongoose";
 
 // Define the interface for a product
 export interface IProduct extends Document {
-  id: number;
+  _id: Types.ObjectId,
   brand: string;
   name: string;
   price: string;
@@ -18,7 +18,7 @@ export interface IProduct extends Document {
 // Define the schema
 const ProductSchema = new Schema<IProduct>(
   {
-    id: Number,
+    _id: { type: Schema.Types.ObjectId, auto: true },
     brand: String,
     name: String,
     price: String,

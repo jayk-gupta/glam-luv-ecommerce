@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./productCard.module.css"
 interface ProductCardProps {
   product: {
-    id: number;
+    _id: string;
     name: string;
     brand: string;
     api_featured_image: string;
@@ -13,10 +13,10 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { id, name, brand, api_featured_image, price, category } = product;
+  const { _id, name, brand, api_featured_image, price, category } = product;
   return (
     <div
-      key={id}
+      key={_id}
       className={styles.productCard}
     >
       <img
@@ -28,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <h3 className={styles.title}>
           {brand} <span>{name}</span>
         </h3>
-        <p className={styles.category}>{category}</p>
+        {/* <p className={styles.category}>{category}</p> */}
         <p className={styles.price}>{`$${price}`}</p>
         <button
           className={styles.Btn}
