@@ -13,7 +13,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { _id, name, brand, api_featured_image, price, category } = product;
+  const { _id, name, brand, api_featured_image, price } = product;
   return (
     <div
       key={_id}
@@ -28,7 +28,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <h3 className={styles.title}>
           {brand} <span>{name}</span>
         </h3>
-        {/* <p className={styles.category}>{category}</p> */}
         <p className={styles.price}>{`$${price}`}</p>
         <button
           className={styles.Btn}

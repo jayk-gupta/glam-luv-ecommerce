@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+interface ProductColor {
+  hex_value: string;
+  colour_name: string;
+}
 
 interface Product {
   _id: string;
@@ -9,7 +13,9 @@ interface Product {
   product_type: string;
   category: string;
   api_featured_image: string;
-  tag_list?: string[]
+  description: string;
+  product_colors?: ProductColor[];
+  tag_list?: string[];
 }
 
 interface Filters {
@@ -49,4 +55,4 @@ export const productsApi = createApi({
   }),
 });
 
-export const {useGetProductsQuery} = productsApi
+export const {useGetProductsQuery,useGetProductByIdQuery} = productsApi
