@@ -7,8 +7,8 @@ import axios from "axios";
 // import { login, loginUser, logoutUser } from "../../../redux/AuthAPI";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
-import { useLoginUserMutation } from "../../../redux/AuthAPI";
-import { setAuthState } from "../../../redux/AuthSlice";
+
+
 
 
 interface Errors {
@@ -23,7 +23,7 @@ function LoginForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
-  const [loginUser] = useLoginUserMutation();
+  // const [loginUser] = useLoginUserMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -55,17 +55,17 @@ function LoginForm() {
     }
 
     try {
-      const response = await loginUser({ email, password }).unwrap();
-      dispatch(
-        setAuthState({ isAuthenticated: true })
-      )
-      console.log(response);
-      // Store the token in a cookie
-      document.cookie = `token=${response.token}; path=/`;
-      console.log(document.cookie);
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.token}`;
+      // const response = await loginUser({ email, password }).unwrap();
+      // dispatch(
+      //   setAuthState({ isAuthenticated: true })
+      // )
+      // console.log(response);
+      // // Store the token in a cookie
+      // document.cookie = `token=${response.token}; path=/`;
+      // console.log(document.cookie);
+      // axios.defaults.headers.common[
+      //   "Authorization"
+      // ] = `Bearer ${response.token}`;
 
       // dispatch(login(true));
       navigate("/account");
