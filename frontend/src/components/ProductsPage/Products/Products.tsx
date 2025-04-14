@@ -23,7 +23,8 @@ function Products() {
     if (isLoading) {
       return (
         <div className="flex justify-center items-center py-10">
-          <div className={styles.loadingSpinner}></div>
+          {/* loading spinner */}
+          <div className="w-12 h-12 border-4 border-primary border-t-transparent border-solid rounded-full animate-spin"></div>
           <p className="pl-12">Loading...</p>
         </div>
       );
@@ -40,8 +41,9 @@ function Products() {
       return <p className="text-center">No products available.</p>;
     }
     // Render products
+    // products conatiner
     return (
-      <div className={styles.productsContainer}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <Link key={product._id} to={`/product/${product._id}`}>
             <ProductCard key={product._id} product={product} />

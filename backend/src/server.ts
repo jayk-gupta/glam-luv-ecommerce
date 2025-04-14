@@ -1,20 +1,23 @@
 import express, { Request, Response } from "express";
-import productRoutes from "./routes/productRoutes";
 import mongoose from "mongoose";
-const app = express();
-const cors = require("cors")
-const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend URL
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Allow cookies if using authentication
-};
 
-app.use(cors(corsOptions));
+const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+// app.use(cookieParser());
+app.use(bodyParser.json());
 
 app.use(express.json());
 require("dotenv").config();
 
-app.use("/products", productRoutes);
+// app.use("/products", productRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("homepage");
@@ -31,6 +34,13 @@ mongoose
   .connect(mongoURL)
   .then(() => console.log("Connected to MongoDB server"))
   .catch((err) => console.error("MongoDB connection error", err));
+
+// ROUTES
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+
+app.use("/products", productRoutes);
+app.use("/user", userRoutes);
 
 app.listen(PORT, () => {
   console.log("app is running on port 3000");

@@ -8,7 +8,6 @@ function HomePage() {
 
   return (
     <div className="  ">
-   
       <img
         src="/LAG_holiday_shine_collection_web_desktop_banner_2.jpeg"
         className="md:w-full"

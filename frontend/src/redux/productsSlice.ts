@@ -25,6 +25,7 @@ interface Filters {
   tag_list?: string[];
   page?:number
 }
+
 interface ProductsResponse {
   products: Product[];
   currentPage: number;

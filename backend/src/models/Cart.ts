@@ -1,19 +1,25 @@
-import { Schema, Types } from "mongoose";
+import mongoose from "mongoose";
 
-export interface IProduct extends Document {
-  _id: Types.ObjectId;
-  brand: string;
-  name: string;
-  price: string;
-  category: string;
-  product_type: string;
-  api_featured_image: string;
-}
+const cartItemSchema = new mongoose.Schema({
+  product: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
+  },
+  quantity: {
+    type: Number,
+    default: 1,
+    min: 1,
+  },
+});                              
 
-const cartSchema = new Schema<IProduct>({
-  _id: { type: Schema.Types.ObjectId, auto: true },
-  brand: String,
-  name: String,
-  price: String,
-  api_featured_image: String,
-});
+const cartSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  items: [cartItemSchema],
+})
+
+const Cart = mongoose.model("Cart", cartSchema)
+export default Cart

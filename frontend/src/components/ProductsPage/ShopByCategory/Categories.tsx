@@ -32,7 +32,7 @@ function Categories() {
             <Link to="/">
               <img className="rounded-lg hover:scale-110 duration-300 ease-in-out " src={img.src} alt={img.title} />
             </Link>
-            <p className="sm:px-4 absolute top-2 left-0 bg-primary text-white rounded-r-full sm:text-lg text-sm px-2">
+            <p className="sm:px-4 absolute top-2 left-0 bg-c text-white rounded-r-full sm:text-lg text-sm px-2">
               {img.title}
             </p>
           </div>

@@ -1,7 +1,0 @@
-.productsContainer{
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6
-}
-
-.loadingSpinner{
-    @apply w-12 h-12 border-4 border-primary border-t-transparent border-solid rounded-full animate-spin
-}

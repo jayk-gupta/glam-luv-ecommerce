@@ -18,7 +18,7 @@ const reviews = [
 ];
 function Reviews() {
   return (
-    <div className="flex flex-col items-center py-12 md:mx-6">
+    <div className=" flex flex-col items-center py-12 md:mx-6">
       <h3 className="lg:text-4xl md:text-2xl font-bold pt-12 text-xl">See what others are saying</h3>
       <div className="reviews flex gap-6 lg:px-48 py-6 sm:flex-col sm:items-center flex-col md:flex-row md:items-stretch items-center">
         {reviews.map((review) => (
@@ -44,7 +44,7 @@ export default Reviews
 function Rating() {
   return (
     <div className="flex gap-1 text-primary">
-      <IoStar />
+      < IoStar />
       <IoStar />
       <IoStar />
       <IoStar />

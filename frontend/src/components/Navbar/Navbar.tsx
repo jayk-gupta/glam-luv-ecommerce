@@ -1,6 +1,5 @@
 import { VscAccount } from "react-icons/vsc";
 import { IoBagOutline } from "react-icons/io5";
-import styles from "./navbar.module.css";
 import { Link } from "react-router-dom";
 import CategoriesNav from "./CategoriesNav";
 import { useState } from "react";
@@ -14,27 +13,33 @@ function Navbar() {
 
   return (
     <>
-      <nav className={styles.navbarContainer}>
+      <nav className="bg-secondary flex justify-between p-4 items-center lg:text-2xl md:w-full md:text-xl md:justify-around">
         <Link to="/">
-          <div className={styles.logo} onMouseEnter={handleMouseLeave}>
+          <div
+            className="lg:text-4xl text-primary md:text-2xl text-lg"
+            onMouseEnter={handleMouseLeave}
+          >
             Glam Luv
           </div>
         </Link>
 
-        <div className={styles.navigation}>
-          <ul className={styles.navLinks}>
+        <div className="flex items-center">
+          <ul className="flex gap-4 text-sm sm:text-lg lg:text-2xl">
             <Link
-              className={styles.navlink}
+              className="hover:cursor-pointer hover:text-primary"
               onMouseEnter={handleMouseLeave}
               to="/about"
             >
               About
             </Link>
-            <div className={styles.navlink} onMouseEnter={handleMouseEnter}>
+            <div
+              className="hover:cursor-pointer hover:text-primary"
+              onMouseEnter={handleMouseEnter}
+            >
               Products
             </div>
             <Link
-              className={styles.navlink}
+              className="hover:cursor-pointer hover:text-primary"
               onMouseEnter={handleMouseLeave}
               to="/contact"
             >
@@ -42,7 +47,7 @@ function Navbar() {
             </Link>
           </ul>
         </div>
-        <div className={styles.iconWrapper}>
+        <div className="flex px-4 gap-2">
           <Link to="/login">
             <VscAccount aria-label="Account" />
           </Link>
@@ -52,7 +57,7 @@ function Navbar() {
 
       {/* Categories Navigation */}
       {showCategories && (
-        <div className={styles.categoriesNav} onMouseLeave={handleMouseLeave}>
+        <div className="" onMouseLeave={handleMouseLeave}>
           <CategoriesNav closeCategoryNav={setShowCategories} />
         </div>
       )}
