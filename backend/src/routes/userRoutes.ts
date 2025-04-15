@@ -14,3 +14,4 @@ router.post("/auth/signup/complete", userController.completeSignup); // expects 
 router.post("/auth/login", userController.login); // expects { email, password }
 
 module.exports = router;
+          
