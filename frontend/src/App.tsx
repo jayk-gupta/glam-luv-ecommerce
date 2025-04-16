@@ -12,6 +12,10 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ContactUs from "./pages/ContactUs";
 import Product from "./components/Product/Product";
+import { useDispatch } from "react-redux";
+import { useGetMeQuery } from "./redux/user/authAPI";
+import { useEffect } from "react";
+import { setCredentials } from "./redux/user/authSlice";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +61,13 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  const { data, isSuccess } = useGetMeQuery();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isSuccess && data) {
+      dispatch(setCredentials(data));
+    }
+  });
   return (
     <div className="w-full">
       <RouterProvider router={router} />

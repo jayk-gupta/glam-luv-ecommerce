@@ -12,7 +12,7 @@ const router = express.Router()
 router.get("/",jwtAuthMiddleware,getCart)
 router.post("/add",jwtAuthMiddleware,addToCart)
 router.patch("/update",updateCartItem)
-router.delete("/remove",removeFromCart)
+router.delete("/remove", jwtAuthMiddleware, removeFromCart);
 router.delete("/clear",clearCart)
  
 

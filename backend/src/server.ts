@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -38,12 +38,12 @@ mongoose
 ///////////////////////////////////////////////////////////
 // ROUTES
 const productRoutes = require("./routes/productRoutes");
-const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 
-app.use("/products", productRoutes);
-app.use("/user", userRoutes);
-app.use("/cart", cartRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 //////////////////////////////////////////////////
 app.listen(PORT, () => {

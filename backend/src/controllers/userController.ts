@@ -86,12 +86,21 @@ exports.login = async (req: Request, res: Response) => {
 
   const token = generateToken({ userId: user._id, email: user.email });
 
-  res.cookie("token", token, {
-    httpOnly: true,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    secure: false,
-    sameSite:"lax"
-  })
+  res
+    .cookie("token", token, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: false,
+      sameSite: "lax",
+    })
     .status(200)
     .json({ message: "Login successful", user: { email: user.email } });
+};
+
+exports.getMe = async (req: any, res: Response) => {
+  const user = req.user;
+  if (!user) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+  res.status(200).json({ email: user.email });
 };
