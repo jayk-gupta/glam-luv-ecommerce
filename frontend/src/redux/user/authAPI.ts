@@ -6,7 +6,7 @@ interface StartSignUpRequest {
 }
 interface VerifyOtpRequest {
   email: string;
-  otp: string;
+  otp: string ;
 }
 interface CompleteSignupRequest {
   email: string;
@@ -29,7 +29,7 @@ export const authAPI = createApi({
   reducerPath: "authApi",
   baseQuery: createBaseQuery("auth"),
   endpoints: (builder) => ({
-    startSignUp: builder.mutation<AuthResponse, StartSignUpRequest>({
+    startSignUp: builder.mutation<{message:string}, StartSignUpRequest>({
       query: (userData) => ({
         url: "signup",
         method: "POST",

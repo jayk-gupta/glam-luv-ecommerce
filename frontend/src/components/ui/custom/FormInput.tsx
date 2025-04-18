@@ -11,7 +11,7 @@ interface FormInputProps<T extends FieldValues> {
   form: UseFormReturn<T>; // Pass the form object for type inference
   disabled?: boolean;
   className?: string;
-  children?: ReactNode;
+  children?: ReactNode ;
 }
 
 export const FormInput = <T extends FieldValues>({

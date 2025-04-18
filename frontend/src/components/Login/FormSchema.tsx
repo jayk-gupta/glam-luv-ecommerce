@@ -1,5 +1,5 @@
 import {z} from "zod"
-export const formSchem = z.object({
+export const formSchema = z.object({
   email: z.string().email({ message: "Invalid email adress" }),
   password: z.string(),
   // .min(6, { message: "Password must be at least 8 characters long" })
@@ -11,3 +11,5 @@ export const formSchem = z.object({
   // })
   // .regex(/\d/, { message: "Password must contain at least one number" })
 });
+
+export type FormSchema = z.infer<typeof formSchem>

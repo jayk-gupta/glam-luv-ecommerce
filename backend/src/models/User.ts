@@ -38,7 +38,7 @@ const UserSchema = new Schema<IUser>(
     name: {
       type: String,
     },
-
+                           
     phone: {
       type: String,
     },
