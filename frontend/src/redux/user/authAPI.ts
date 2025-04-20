@@ -27,39 +27,39 @@ interface AuthResponse {
 
 export const authAPI = createApi({
   reducerPath: "authApi",
-  baseQuery: createBaseQuery("auth"),
+  baseQuery: createBaseQuery("auth/"),
   endpoints: (builder) => ({
-    startSignUp: builder.mutation<{message:string}, StartSignUpRequest>({
+    startSignUp: builder.mutation<{ message: string }, StartSignUpRequest>({
       query: (userData) => ({
-        url: "signup",
+        url: "signup/start",
         method: "POST",
         body: userData,
       }),
     }),
     verifyOtp: builder.mutation<AuthResponse, VerifyOtpRequest>({
       query: (body) => ({
-        url: "/verify-otp",
+        url: "verify-otp",
         method: "POST",
         body,
       }),
     }),
     completeSignup: builder.mutation<AuthResponse, CompleteSignupRequest>({
       query: (body) => ({
-        url: "/signup/complete",
+        url: "signup/complete",
         method: "POST",
         body,
       }),
     }),
     login: builder.mutation<AuthResponse, LoginRequest>({
       query: (body) => ({
-        url: "/login",
+        url: "login",
         method: "POST",
         body,
       }),
     }),
-      getMe: builder.query<{ email: string }, void>({
-        query: () => "/me"
-    })
+    getMe: builder.query<{ email: string }, void>({
+      query: () => "me",
+    }),
   }),
 });
 

@@ -1,7 +1,6 @@
 import { useStartSignUpMutation } from "@/redux/user/authAPI";
 import { Form } from "../ui/form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { FormSchema, formSchema } from "./FormSchema";
 import { setSignupEmail } from "@/redux/user/authSlice";
 import { FormInput } from "../ui/custom/FormInput";
@@ -10,9 +9,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Error from "../ui/custom/Error";
 
-function SignupForm() {
+function SignupForm({ onSuccess }: { onSuccess: () => void }) {
   const dispatch = useDispatch();
-  const navigte = useNavigate();
   const [startSignup, { isLoading, error }] = useStartSignUpMutation();
 
   const form = useForm<FormSchema>({
@@ -26,28 +24,35 @@ function SignupForm() {
     try {
       await startSignup({ email }).unwrap();
       dispatch(setSignupEmail(email));
+      onSuccess();
     } catch (error: any) {
       console.log(error);
     }
   }
 
   return (
-    <div>
+    <div className="w-1/3 p-16 rounded-2xl bg-white">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div>
-            <h3>Log in</h3>
+          <div className=" flex flex-col gap-2">
+            <h3 className="text-xl font-bold">Log In</h3>
             <p>Enter your email and we'll send you a login code</p>
             <FormInput
               name="email"
               label="Email"
               placeholder="Email"
               form={form}
+              className="py-6"
             />
           </div>
           {error && <Error error={error} />}
 
-          <Button type="submit" disabled={isLoading}>
+          <Button
+            variant="default"
+            type="submit"
+            className="w-full bg-gray-800 text-white"
+            disabled={isLoading}
+          >
             {isLoading ? "Sending code" : "Continue"}
           </Button>
         </form>

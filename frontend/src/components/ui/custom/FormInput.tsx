@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { FormControl, FormField, FormLabel, FormMessage } from "./form";
-import { Input } from "./input";
+import { FormControl, FormField, FormLabel, FormMessage } from "../form"
+import { Input } from "../input";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
 interface FormInputProps<T extends FieldValues> {
@@ -32,9 +32,9 @@ export const FormInput = <T extends FieldValues>({
         <div className={className}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <div className="relative  flex items-center">
+            <div className="relative pt-2  flex items-center">
               <Input
-                className="w-5/6"
+                className=" "
                 placeholder={placeholder}
                 type={type}
                 {...field}

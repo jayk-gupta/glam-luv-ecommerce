@@ -70,7 +70,21 @@ exports.completeSignup = async (req: Request, res: Response) => {
   const hasedPassword = await bcrypt.hash(password, 10);
   const user = await User.create({ email, password: hasedPassword });
 
-  res.status(201).json({ message: "Signup completed", userId: user._id });
+  // ✅ Auto-login part:
+  const token = generateToken({ userId: user._id, email: user.email });
+
+  res
+    .cookie("token", token, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: false,
+      sameSite: "lax",
+    })
+    .status(201)
+    .json({
+      message: "Signup completed and logged in",
+      user: { email: user.email },
+    });
 };
 ///////////////////////////////////////////////////////
 // login
