@@ -9,7 +9,8 @@ Glam Luv is a full-stack e-commerce costmetics web application. The platform all
 - **Frontend:**
   - React.js
   - Tailwind CSS
-  - Axios 
+  - TypeScript 
+  - Shadcn
 - **Backend:**
   - Node.js
   - Express.js
@@ -18,7 +19,8 @@ Glam Luv is a full-stack e-commerce costmetics web application. The platform all
   - MongoDB
 - **Others:**
   - Redux Toolkit (for state management)
-  - Vercel (for deployment)
+  - Redux Toolkit Query
+  - Gemini API
 
 
 ---
@@ -30,12 +32,12 @@ Glam Luv is a full-stack e-commerce costmetics web application. The platform all
 - **Basic Functionality:**
   - Display all products dynamically fetched from the backend.
   - Responsive design with optimized layouts for mobile, tablet, and desktop.
+  - **Authentication:**
+  - User login and registration with encrypted passwords using JWT.
   
 ---
 
 ## Planned Features
-- **Authentication:**
-  - User login and registration with encrypted passwords using JWT.
 - **Product Management:**
   - Filtering and searching products by categories, price, and brand.
 - **Shopping Cart:**
