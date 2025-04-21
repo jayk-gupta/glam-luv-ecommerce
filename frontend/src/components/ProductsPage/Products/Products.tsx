@@ -45,9 +45,7 @@ function Products() {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <Link key={product._id} to={`/product/${product._id}`}>
-            <ProductCard key={product._id} product={product} />
-          </Link>
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     );
@@ -71,7 +69,7 @@ function Products() {
           Previous
         </button>
         <span>
-         Page {currentPage} out of {totalPages}
+          Page {currentPage} out of {totalPages}
         </span>
         <button
           className="bg-[#EB008B] text-white p-2 rounded-sm hover:cursor-pointer hover:bg-[#ff029e]"

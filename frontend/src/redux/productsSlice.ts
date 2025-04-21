@@ -36,8 +36,7 @@ interface ProductsResponse {
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
-    // baseUrl: "https://glam-luv-backend.vercel.app/",
+    baseUrl: "http://localhost:3000/api",
     credentials: "include",
   }),
   endpoints: (builder) => ({

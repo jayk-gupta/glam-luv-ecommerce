@@ -17,7 +17,6 @@ import { useGetMeQuery } from "./redux/user/authAPI";
 import { useEffect } from "react";
 import { setCredentials } from "./redux/user/authSlice";
 import VerifyOTP from "./pages/VerifyOTP";
-import CompleteSignupForm from "./components/Signup/CompleteSignupForm";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,9 +70,9 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isSuccess && data) {
-      dispatch(setCredentials(data));
+      dispatch(setCredentials(data)); 
     }
-  });
+  }, [isSuccess, data, dispatch]);
   return (
     <div className="w-full bg-[#FAFAFA]">
       <RouterProvider router={router} />

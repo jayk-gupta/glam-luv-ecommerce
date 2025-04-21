@@ -30,6 +30,7 @@ export const addToCart = async (req: AuthRequest, res: Response) => {
     const userId = req.userPayload.userId;
     // payload these two
     const { productId, quantity = 1 } = req.body;
+    console.log(productId, quantity);
     // find user cart
     let cart = await Cart.findOne({ user: userId });
     // if no cart then create cart

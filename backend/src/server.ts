@@ -40,11 +40,12 @@ mongoose
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const chatbotRoutes = require("./routes/chatbotRoutes")
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
-
+app.use("/api/chatbot", chatbotRoutes)
 //////////////////////////////////////////////////
 app.listen(PORT, () => {
   console.log("app is running on port 3000");

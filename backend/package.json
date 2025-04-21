@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
     "@types/cors": "^2.8.17",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
@@ -24,7 +25,8 @@
     "mongoose": "^8.8.3",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.10.0",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "openai": "^4.95.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
