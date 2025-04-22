@@ -28,6 +28,7 @@ export const addToCart = async (req: AuthRequest, res: Response) => {
   try {
     // userid get from jwt ,may be
     const userId = req.userPayload.userId;
+    console.log("userid:" + userId)
     // payload these two
     const { productId, quantity = 1 } = req.body;
     console.log(productId, quantity);

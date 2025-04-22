@@ -21,6 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     e.preventDefault();
     try {
       await addToCart({ productId: _id, quantity: 1 }).unwrap();
+      
       console.log("added to cart")
     } catch (error) {
       console.error("Failed to add to cart:", error);

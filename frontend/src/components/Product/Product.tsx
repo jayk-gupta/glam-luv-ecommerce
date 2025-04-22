@@ -1,14 +1,35 @@
 import { useParams } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../redux/productsSlice"; // Adjust import path
-import styles from "./product.module.css";
+import { useGetProductByIdQuery } from "../../redux/productsSlice";
 import ProductColors from "./ProductColors";
 import ProductCartValue from "./ProductCartValue";
+import { useAddToCartMutation } from "@/redux/cart/cartAPI";
+import { useState } from "react";
 const Product = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from URL
   const { data: product, isLoading, isError } = useGetProductByIdQuery(id!);
 
+  // Add to cart
+  const [addToCart, { isLoading: isLoadingCart }] = useAddToCartMutation();
+  const [quantity, setQuantity] = useState(1);
+  ////////////////////
   if (isLoading) return <p>Loading product details...</p>;
   if (isError || !product) return <p>Product not found!</p>;
+
+  const handleAddCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      const response = await addToCart({
+        productId: product._id,
+        quantity: quantity,
+      }).unwrap();
+
+      console.log(response);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  };
+
+  //////////////////////////
   return (
     <div className="flex justify-center mt-24  mb-32 gap-32 w-full">
       <div>
@@ -30,14 +51,16 @@ const Product = () => {
           <ProductColors colors={product.product_colors ?? []} />
         </div>
         <div className="product-actions flex gap-12 items-center mb-12">
-          <ProductCartValue />
+          <ProductCartValue quantity={quantity} setQuantity={setQuantity} />
           <button
-            className="w-full bg-primary text-white border-2 rounded-lg border-primary  hover:bg-white hover:text-primary py-2 my-4
+            className="w-full bg-primary text-white border-2 rounded-lg border-primary  hover:bg-white hover:text-[#E80071] py-2 my-4 cursor-pointer
         sm:text-sm xl:py-1 xl:text-sm 2xl:text-lg"
+            onClick={handleAddCart}
           >
-            Add to Bag
+            {isLoadingCart ? "Adding..." : "Add to Bag"}
           </button>
         </div>
+        <h3 className="font-semibold text-xl">About this item</h3>
         <p className="text-lg">{product.description}</p>
       </div>
     </div>

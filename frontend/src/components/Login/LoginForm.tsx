@@ -1,7 +1,8 @@
 import { useLoginMutation } from "@/redux/user/authAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Form } from "../ui/form";
 import { formSchema, FormSchema } from "./FormSchema";
 import { setCredentials } from "@/redux/user/authSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,9 +23,10 @@ function LoginForm() {
   });
   async function onSubmit(values: FormSchema) {
     try {
-      const response = await LogIn(values).unwrap()
-      dispatch(setCredentials(values.email))
-      navigate("/")
+      const response = await LogIn(values).unwrap();
+      console.log(response);
+      dispatch(setCredentials({ email: values.email }));
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

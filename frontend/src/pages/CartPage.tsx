@@ -3,7 +3,7 @@ import { useGetCartQuery } from "@/redux/cart/cartAPI"
 
 function CartPage() {
   const { data, isLoading, error } = useGetCartQuery()
-  
+  console.log(data)
   if (isLoading) return <p>Loading cart...</p>;
   if (error) return <p>Something went wrong loading your cart.</p>;
   return (

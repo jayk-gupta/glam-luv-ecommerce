@@ -20,7 +20,6 @@ export const FormInput = <T extends FieldValues>({
   placeholder,
   type = "text",
   form,
-  children,
   disabled = false,
   className = "",
 }: FormInputProps<T>) => {
@@ -40,14 +39,6 @@ export const FormInput = <T extends FieldValues>({
                 {...field}
                 disabled={disabled}
               />
-              {children && (
-                <div
-                  className=" absolute 
-    right-20 flex items-center"
-                >
-                  {children}
-                </div>
-              )}
             </div>
           </FormControl>
           <FormMessage />

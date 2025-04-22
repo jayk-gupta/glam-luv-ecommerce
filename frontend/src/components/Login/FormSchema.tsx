@@ -12,4 +12,4 @@ export const formSchema = z.object({
   // .regex(/\d/, { message: "Password must contain at least one number" })
 });
 
-export type FormSchema = z.infer<typeof formSchem>
+export type FormSchema = z.infer<typeof formSchema>
