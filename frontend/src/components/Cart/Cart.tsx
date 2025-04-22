@@ -1,5 +1,8 @@
 // components/Cart/Cart.tsx
 
+import { useState } from "react";
+import ProductCartValue from "../Product/ProductCartValue";
+
 
 interface CartItem {
   product: {
@@ -12,6 +15,7 @@ interface CartItem {
 }
 
 const Cart = ({ items }: { items: CartItem[] }) => {
+
   if (items.length === 0) {
     return <p className="text-center">Your cart is empty.</p>;
   }
@@ -22,21 +26,24 @@ const Cart = ({ items }: { items: CartItem[] }) => {
   );
 
   return (
-    <div className="px-4 space-y-6">
+    <div className=" space-y-6 px-64">
       {items.map((item) => (
         <div
           key={item.product._id}
-          className="flex items-center gap-4 border-b pb-4"
+          className="flex items-center gap-4 shadow-lg pb-4 bg-[#fff1f9] p-4"
         >
           <img
             src={item.product.api_featured_image}
             alt={item.product.name}
-            className="w-20 h-20 object-cover rounded"
+            className="w-40 h-40 object-cover rounded"
           />
-          <div className="flex-1">
-            <h3 className="font-semibold">{item.product.name}</h3>
-            <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
-            <p className="text-sm font-medium">Price: ${item.product.price}</p>
+          <div className="grid grid-cols-3 gap-8 w-full items-center">
+            <div className="truncate font-semibold">{item.product.name}</div>
+       
+            <div className="text-lg text-gray-600">Qty: {item.quantity}</div>
+            <div className="text-lg font-medium">
+              Price: ${item.product.price}
+            </div>
           </div>
         </div>
       ))}

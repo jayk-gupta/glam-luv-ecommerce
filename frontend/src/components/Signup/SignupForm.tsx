@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Error from "../ui/custom/Error";
+import { Link } from "react-router-dom";
 
 function SignupForm({ onSuccess }: { onSuccess: () => void }) {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function SignupForm({ onSuccess }: { onSuccess: () => void }) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className=" flex flex-col gap-2">
-            <h3 className="text-xl font-bold">Log In</h3>
+            <h3 className="text-xl font-bold">Sign Up</h3>
             <p>Enter your email and we'll send you a login code</p>
             <FormInput
               name="email"
@@ -57,6 +58,12 @@ function SignupForm({ onSuccess }: { onSuccess: () => void }) {
           </Button>
         </form>
       </Form>
+          <p className="pt-12 text-center">
+              Already have an account
+              <Link to="/login">
+                <span className="underline pl-2 hover:text-[#E80071]">Log In</span>
+              </Link>
+            </p>
     </div>
   );
 }

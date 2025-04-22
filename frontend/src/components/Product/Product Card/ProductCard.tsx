@@ -44,7 +44,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <h3 className="font-bold capitalize  h-12  text-sm">
           {brand} <span>{name}</span>
         </h3>
-        <p className="text-primary font-bold;">{`$${price}`}</p>
+        <p className="text-primary font-bold">
+          {price && price !== "0.0" ? `$${price}` : "$15.0"}
+        </p>
         <button
           className=" w-full bg-white border-2 border-primary
          text-primary hover:bg-[#E80071] hover:text-white py-2 my-4

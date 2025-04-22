@@ -1,7 +1,7 @@
 import { useLoginMutation } from "@/redux/user/authAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../ui/form";
 import { formSchema, FormSchema } from "./FormSchema";
 import { setCredentials } from "@/redux/user/authSlice";
@@ -32,12 +32,11 @@ function LoginForm() {
     }
   }
   return (
-    <div className="w-1/3 p-16 rounded-2xl bg-white">
+    <div className="w-1/3 p-16 rounded-2xl bg-white shadow-lg">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className=" flex flex-col gap-2">
             <h3 className="text-xl font-bold">Log In</h3>
-            <p>Enter your email and we'll send you a login code</p>
             <FormInput
               name="email"
               label="Email"
@@ -65,6 +64,12 @@ function LoginForm() {
           </Button>
         </form>
       </Form>
+      <p className="pt-12 text-center">
+        Don't have an account
+        <Link to="/signup">
+          <span className="underline pl-2 hover:text-[#E80071]">Signup</span>
+        </Link>
+      </p>
     </div>
   );
 }

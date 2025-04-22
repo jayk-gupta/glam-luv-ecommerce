@@ -7,8 +7,8 @@ function CartPage() {
   if (isLoading) return <p>Loading cart...</p>;
   if (error) return <p>Something went wrong loading your cart.</p>;
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4 px-4">🛒 Your Cart</h2>
+    <div className="border flex flex-col ">
+      <h2 className="text-xl font-bold mb-4 px-4  ">🛒 Your Cart</h2>
       <Cart items={data?.items || []} />
     </div>
   );

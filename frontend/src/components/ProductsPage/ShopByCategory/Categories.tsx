@@ -28,11 +28,15 @@ function Categories() {
       </h2>
       <div className="flex gap-4">
         {images.map((img) => (
-          <div className="rounded-lg relative overflow-clip" key={img.title}>
+          <div className="rounded-lg  relative overflow-clip" key={img.title}>
             <Link to="/">
-              <img className="rounded-lg hover:scale-110 duration-300 ease-in-out " src={img.src} alt={img.title} />
+              <img
+                className="rounded-lg hover:scale-110 duration-300 ease-in-out "
+                src={img.src}
+                alt={img.title}
+              />
             </Link>
-            <p className="sm:px-4 absolute top-2 left-0 bg-c text-white rounded-r-full sm:text-lg text-sm px-2">
+            <p className="sm:px-4 absolute top-2 left-0 bg-c text-white bg-[#E80071] rounded-r-full sm:text-lg text-sm px-2">
               {img.title}
             </p>
           </div>

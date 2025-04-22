@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useGetCartQuery } from "@/redux/cart/cartAPI";
 
 const navItemStyle =
-  "hover:cursor-pointer hover:text-primary uppercase text-xl font-semibold";
+  "hover:cursor-pointer hover:text-[#E80071] uppercase text-xl font-semibold";
 
 function Navbar() {
   const [showCategories, setShowCategories] = useState(false);
