@@ -21,7 +21,7 @@ export const getProductById = async (req: Request, res: Response) => {
 export const getProducts = async (req: Request, res: Response) => {
   try {
     const { product_type, category, brand, tag_list, page = "1" } = req.query;
-
+console.log(product_type)
     const matchFilter: any = {};
     if (category && typeof category === "string") {
       matchFilter.category = category;

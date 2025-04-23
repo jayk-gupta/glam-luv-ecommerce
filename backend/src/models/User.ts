@@ -3,7 +3,6 @@ import mongoose, { Document, Schema } from "mongoose";
 interface IUser extends Document{
   email: string,
   password?: string
-  isVerified: boolean
   otp?: {
     code: string,
     expriesAt: Date 
@@ -23,11 +22,6 @@ const UserSchema = new Schema<IUser>(
     password: {
       type: String,
       required: false,
-    },
-
-    isVerified: {
-      type: Boolean,
-      default: false,
     },
     otp: {
       code: {

@@ -37,15 +37,20 @@ mongoose
   .catch((err) => console.error("MongoDB connection error", err));
 ///////////////////////////////////////////////////////////
 // ROUTES
+// product routes
 const productRoutes = require("./routes/productRoutes");
-const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
-const chatbotRoutes = require("./routes/chatbotRoutes")
+// user routes
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./controllers/userController");
+// chatbot
+const chatbotRoutes = require("./routes/chatbotRoutes");
 
 app.use("/api/auth", authRoutes);
+app.use("/api/user/profile", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
-app.use("/api/chatbot", chatbotRoutes)
+app.use("/api/chatbot", chatbotRoutes);
 //////////////////////////////////////////////////
 app.listen(PORT, () => {
   console.log("app is running on port 3000");

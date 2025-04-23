@@ -39,7 +39,7 @@ function CategoriesNav({ closeCategoryNav }: CategoriesNavProps) {
     closeCategoryNav(false);
     navigate("/products", { state: { title: product.api } });
   };
-
+  //   navigate(`/products/${category}/${subCategory}`);
   return (
     <div className="absolute bg-white z-10 flex justify-center h-80 items-center w-full">
       <div className="nav flex gap-32">

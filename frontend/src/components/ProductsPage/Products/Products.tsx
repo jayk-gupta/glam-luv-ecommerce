@@ -1,6 +1,5 @@
 import ProductCard from "../../Product/Product Card/ProductCard";
 import { Link, useLocation } from "react-router-dom";
-import styles from "./products.module.css";
 import { useGetProductsQuery } from "../../../redux/productsSlice";
 import { useState } from "react";
 
@@ -87,3 +86,16 @@ function Products() {
 }
 
 export default Products;
+
+
+/*
+import { useParams } from "react-router-dom";
+
+const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
+
+// Use subcategory for API query
+const { data, isLoading } = useGetProductsQuery({
+  product_type: subcategory,
+  page,
+});
+*/ 

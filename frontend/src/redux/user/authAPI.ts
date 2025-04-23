@@ -6,7 +6,7 @@ interface StartSignUpRequest {
 }
 interface VerifyOtpRequest {
   email: string;
-  otp: string ;
+  otp: string;
 }
 interface CompleteSignupRequest {
   email: string;
@@ -67,6 +67,6 @@ export const {
   useStartSignUpMutation,
   useVerifyOtpMutation,
   useCompleteSignupMutation,
-    useLoginMutation,
-  useGetMeQuery
+  useLoginMutation,
+  useGetMeQuery,
 } = authAPI;
