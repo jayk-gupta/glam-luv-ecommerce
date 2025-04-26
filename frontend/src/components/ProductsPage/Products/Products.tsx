@@ -1,5 +1,5 @@
 import ProductCard from "../../Product/Product Card/ProductCard";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useGetProductsQuery } from "../../../redux/productsSlice";
 import { useState } from "react";
 

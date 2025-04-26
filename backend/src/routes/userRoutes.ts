@@ -1,9 +1,15 @@
-import { getProfile } from "../controllers/userController"
-import { jwtAuthMiddleware } from "../jwt"
+import {
+  deleteProfile,
+  getProfile,
+  updateProfile,
+} from "../controllers/userController";
+import { jwtAuthMiddleware } from "../jwt";
 
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-router.get("/profile", jwtAuthMiddleware, getProfile)
+router.get("/get", jwtAuthMiddleware, getProfile);
+router.patch("/update", jwtAuthMiddleware, updateProfile);
+router.delete("/delete", jwtAuthMiddleware, deleteProfile);
 
 export default router;

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 export interface IAddress extends Document {
+  // _id?: string;
   userId: mongoose.Types.ObjectId;
   fullName: string;
   phone: string;
