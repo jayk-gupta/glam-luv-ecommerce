@@ -21,7 +21,13 @@ interface UserProfileResponse {
     name?: string;
     phone?: string;
   };
-  address: Address[];
+  addresses: Address[];
+}
+
+interface UpdateProfileRequest {
+  name?: string;
+  phone?: string;
+  address?: Partial<Address>;
 }
 
 export const userAPI = createApi({
@@ -31,7 +37,27 @@ export const userAPI = createApi({
     getUserProfile: builder.query<UserProfileResponse, void>({
       query: () => "/profile",
     }),
+    updateUserProfile: builder.mutation<
+      UserProfileResponse,
+      UpdateProfileRequest
+    >({
+      query: (body) => ({
+        url: "/update",
+        method: "PATCH",
+        body,
+      }),
+    }),
+    deleteUserProfile: builder.mutation<{ message: string }, void>({
+      query: () => ({
+        url: "/delete",
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useGetUserProfileQuery } = userAPI;
+export const {
+  useGetUserProfileQuery,
+  useDeleteUserProfileMutation,
+  useUpdateUserProfileMutation,
+} = userAPI;

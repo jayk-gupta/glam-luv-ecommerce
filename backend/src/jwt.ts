@@ -1,11 +1,7 @@
 const jwt = require("jsonwebtoken");
-import { Request, Response ,NextFunction} from "express";
+import { Request, Response ,NextFunction, RequestHandler} from "express";
 const jwtAuthMiddleware = (req:Request, res:Response, next:NextFunction) => {
-  // if (!req.cookies || req.cookies.token) {
-  //   return res.status(401).json({
-  //     error: "Unauthorized: Token not found",
-  //   });
-  // }
+
   const token = req.cookies?.token;
   if (!token) {
     return res.status(401).json({

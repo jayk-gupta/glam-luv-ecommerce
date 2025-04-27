@@ -42,7 +42,7 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 // user routes
 const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./controllers/userController");
+const userRoutes = require("./routes/userRoutes");
 // chatbot
 const chatbotRoutes = require("./routes/chatbotRoutes");
 

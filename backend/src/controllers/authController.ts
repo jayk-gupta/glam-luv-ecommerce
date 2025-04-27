@@ -116,6 +116,22 @@ exports.login = async (req: Request, res: Response) => {
     .json({ message: "Login successful", user: { email: user.email } });
 };
 
+// Logout
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({ error: "Logout failed" });
+  }
+};
+
+/////////////////////////////////////////////////
 export const getMe = async (req: AuthRequest, res: Response) => {
   try {
     const user = await User.findById(req.userPayload.userId).select("email");

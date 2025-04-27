@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import CategoriesNav from "./CategoriesNav";
 import { useState } from "react";
 import { useGetCartQuery } from "@/redux/cart/cartAPI";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const navItemStyle =
   "hover:cursor-pointer hover:text-[#E80071] uppercase text-xl font-semibold";
@@ -11,6 +13,9 @@ const navItemStyle =
 function Navbar() {
   const [showCategories, setShowCategories] = useState(false);
   const { data, isLoading, error } = useGetCartQuery();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
   const quantity = data?.items.length || 0;
   // Handlers for mouse events
   const handleMouseEnter = () => setShowCategories(true);
@@ -18,7 +23,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-[#FFEAF6] flex justify-between p-4 items-center lg:text-2xl md:w-full md:text-xl md:justify-around">
+      <nav className="bg-[#FFEAF6] flex justify-between py-4 items-center lg:text-2xl md:w-full md:text-xl md:px-12">
         <Link to="/">
           <div
             className="lg:text-4xl text-primary md:text-2xl text-lg"
@@ -50,17 +55,17 @@ function Navbar() {
           </ul>
         </div>
         <div className="flex px-4 gap-2">
-          <Link to="/login">
+          <Link to={isAuthenticated ? "/account" : "/login"}>
             <VscAccount className="text-3xl" aria-label="Account" />
           </Link>
-     
-            <Link to="/cart" className="relative ">
-              <IoBagOutline className="text-3xl" aria-label="Cart" />
-              <div className="text-sm absolute bg-white left-4 bottom-4 px-2 rounded-full">
-                {quantity}
-              </div>
-            </Link>
-          </div>
+
+          <Link to="/cart" className="relative ">
+            <IoBagOutline className="text-3xl" aria-label="Cart" />
+            <div className="text-sm absolute bg-white left-4 bottom-4 px-2 rounded-full">
+              {quantity}
+            </div>
+          </Link>
+        </div>
       </nav>
 
       {/* Categories Navigation */}
