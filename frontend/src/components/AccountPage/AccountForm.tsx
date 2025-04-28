@@ -11,14 +11,19 @@ import {
 
 import { Button } from "../ui/button";
 import { FormInput } from "../ui/custom/FormInput";
+import { useClearCartMutation } from "@/redux/cart/cartAPI";
+import { useNavigate } from "react-router-dom";
 
 function AccountForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data: userData, isLoading } = useGetUserProfileQuery();
-  const [deleteProfile, { isLoading: isUpdating }] =
-    useDeleteUserProfileMutation();
-  const [updateProfile, { isLoading: isDeleting }] =
+  const [updateProfile, { isLoading: isUpdating }] =
     useUpdateUserProfileMutation();
+  const [deleteProfile, { isLoading: isDeleting }] =
+    useDeleteUserProfileMutation();
+  // cart
+  const { clearCart } = useClearCartMutation();
   // form
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -26,6 +31,7 @@ function AccountForm() {
       name: userData?.user?.name || "",
       phone: userData?.user?.phone || "",
       address: {
+        _id: userData?.addresses?.[0]?._id || "",
         fullName: userData?.addresses?.[0]?.fullName || "",
         phone: userData?.addresses?.[0]?.phone || "",
         street: userData?.addresses?.[0]?.street || "",
@@ -40,6 +46,7 @@ function AccountForm() {
       name: userData?.user?.name || "",
       phone: userData?.user?.phone || "",
       address: {
+        _id: userData?.addresses?.[0]?._id || "",
         fullName: userData?.addresses?.[0]?.fullName || "",
         phone: userData?.addresses?.[0]?.phone || "",
         street: userData?.addresses?.[0]?.street || "",
@@ -52,7 +59,9 @@ function AccountForm() {
   });
   async function onSubmit(values: FormSchema) {
     try {
-      await updateProfile(values).unwrap();
+      const res = await updateProfile(values).unwrap();
+      console.log("updating profile");
+      console.log(res);
     } catch (error) {
       console.log(error);
       alert("Failed to update profile.");
@@ -62,7 +71,7 @@ function AccountForm() {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className=" flex flex-col gap-2 px-64">
+          <div className=" flex flex-col gap-2 px-64 ">
             <h3 className="text-2xl font-semibold">Your Account</h3>
             <FormInput
               name="name"
@@ -77,7 +86,10 @@ function AccountForm() {
               placeholder="Enter your phone number"
               form={form}
             />
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="font-semibold text-lg mt-12 ">
+              Address Information
+            </h2>
+            <div className=" grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormInput
                 name="address.fullName"
                 label="Full Name"
@@ -121,43 +133,42 @@ function AccountForm() {
                 form={form}
               />
             </div>
-
-            <Button
-              type="submit"
-              disabled={isUpdating}
-              className="w-full
-              text-white mt-12
-              bg-primary hover:bg-primary/80"
-            >
-              {isUpdating ? "Saving..." : "Save Changes"}
-            </Button>
+            <div className="flex gap-4 mt-12">
+              <Button
+                type="submit"
+                disabled={isUpdating}
+                className="w-1/2
+              text-white 
+              bg-primary hover:bg-primary/80 hover:cursor-pointer"
+              >
+                {isUpdating ? "Saving..." : "Save Changes"}
+              </Button>
+              <Button
+                onClick={async () => {
+                  if (
+                    confirm(
+                      "Are you sure you want to delete your account? This action cannot be undone."
+                    )
+                  ) {
+                    try {
+                      await deleteProfile().unwrap();
+                      await clearCart();
+                      alert("Account deleted successfully!");
+                      navigate("/");
+                    } catch (error) {
+                      console.error(error);
+                      alert("Failed to delete account.");
+                    }
+                  }
+                }}
+                disabled={isDeleting}
+                className="w-1/2 text-white"
+              >
+                {isDeleting ? "Deleting..." : "Delete Account"}
+              </Button>
+            </div>
           </div>
         </form>
-        <div className="mt-6">
-          <Button
-            variant="destructive"
-            onClick={async () => {
-              if (
-                confirm(
-                  "Are you sure you want to delete your account? This action cannot be undone."
-                )
-              ) {
-                try {
-                  await deleteProfile().unwrap();
-                  alert("Account deleted successfully!");
-                  window.location.href = "/"; // redirect to home after deletion
-                } catch (error) {
-                  console.error(error);
-                  alert("Failed to delete account.");
-                }
-              }
-            }}
-            disabled={isDeleting}
-            className="w-full"
-          >
-            {isDeleting ? "Deleting..." : "Delete Account"}
-          </Button>
-        </div>
       </Form>
     </div>
   );

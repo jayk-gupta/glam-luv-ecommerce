@@ -32,26 +32,27 @@ interface UpdateProfileRequest {
 
 export const userAPI = createApi({
   reducerPath: "userApi",
-  baseQuery: createBaseQuery("user"),
+  baseQuery: createBaseQuery("user/profile"),
+  tagTypes: ["UserProfile"],
   endpoints: (builder) => ({
     getUserProfile: builder.query<UserProfileResponse, void>({
-      query: () => "/profile",
+      query: () => "/get",
+      providesTags: ["UserProfile"],
     }),
-    updateUserProfile: builder.mutation<
-      UserProfileResponse,
-      UpdateProfileRequest
-    >({
+    updateUserProfile: builder.mutation<UserProfileResponse,   UpdateProfileRequest>({
       query: (body) => ({
         url: "/update",
         method: "PATCH",
         body,
       }),
+      invalidatesTags: ["UserProfile"],
     }),
     deleteUserProfile: builder.mutation<{ message: string }, void>({
       query: () => ({
         url: "/delete",
         method: "DELETE",
       }),
+      invalidatesTags: ["UserProfile"],
     }),
   }),
 });
