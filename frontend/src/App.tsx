@@ -40,7 +40,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        // <Route path="/products/:category/:subcategory" element={<ProductsPage />} />
+        element: <ProductsPage />,
+      },
+      {
+        path: "/products/:category/:subCategory",
         element: <ProductsPage />,
       },
       {
@@ -71,7 +74,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isSuccess && data) {
-      dispatch(setCredentials({email: data.email})); 
+      dispatch(setCredentials({ email: data.email }));
     }
   }, [isSuccess, data, dispatch]);
   return (

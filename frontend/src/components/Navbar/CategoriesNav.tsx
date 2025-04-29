@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 type CategoriesNavProps = {
   closeCategoryNav: (value: boolean) => void;
 };
@@ -34,10 +34,17 @@ const categories = [
 ];
 function CategoriesNav({ closeCategoryNav }: CategoriesNavProps) {
   const navigate = useNavigate();
-
-  const handleCategoryClick = (product: { ui: string; api: string }) => {
+  const location = useLocation();
+  const handleCategoryClick = (
+    category: string,
+    product: { ui: string; api: string }
+  ) => {
     closeCategoryNav(false);
-    navigate("/products", { state: { title: product.api } });
+    const categorySlug = category.toLowerCase();
+    const productSlug = product.api.toLowerCase();
+    navigate(`/products/${categorySlug}/${productSlug}`, {
+      state: { title: product.api, label: product.ui },
+    });
   };
   //   navigate(`/products/${category}/${subCategory}`);
   return (
@@ -57,7 +64,9 @@ function CategoriesNav({ closeCategoryNav }: CategoriesNavProps) {
                 <li
                   className="hover:border-b-2 hover:border-primary hover:cursor-pointer duration-200 border-b-2 border-white"
                   style={{ width: "fit-content" }}
-                  onClick={() => handleCategoryClick(product)}
+                  onClick={() =>
+                    handleCategoryClick(category.category, product)
+                  }
                 >
                   {product.ui}
                 </li>

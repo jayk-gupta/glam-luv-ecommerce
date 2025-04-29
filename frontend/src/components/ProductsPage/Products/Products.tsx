@@ -1,12 +1,21 @@
 import ProductCard from "../../Product/Product Card/ProductCard";
 import { useLocation } from "react-router-dom";
 import { useGetProductsQuery } from "../../../redux/productsSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Products() {
   const { state } = useLocation();
-  const title: string | undefined = state?.title;
+  const title: string | "" = state?.title;
+  const productLabel: string | "" = state?.label
   const [page, setPage] = useState(1);
+
+  // const [productType, setProductType] = useState(title);
+  
+  // useEffect(() => {
+  //   setPage(1); // Reset to page 1 on new selection
+  //   setProductType(title); // Trigger refetch
+  // }, [title]);
+
   const { data, isLoading, isError, error } = useGetProductsQuery({
     product_type: title,
     page,
@@ -23,7 +32,7 @@ function Products() {
       return (
         <div className="flex justify-center items-center py-10">
           {/* loading spinner */}
-          <div className="w-12 h-12 border-4 border-primary border-t-transparent border-solid rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-2 border-primary border-t-transparent border-solid rounded-full animate-spin"></div>
           <p className="pl-12">Loading...</p>
         </div>
       );
@@ -52,7 +61,7 @@ function Products() {
 
   return (
     <div>
-      <h2 className="text-4xl py-4 font-bold">{title || "Products"}</h2>
+      <h2 className="text-4xl py-4 font-bold">{productLabel || "Products"}</h2>
       {renderContent()}
 
       {/* Pagination */}
