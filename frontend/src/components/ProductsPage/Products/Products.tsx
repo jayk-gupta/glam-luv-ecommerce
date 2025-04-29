@@ -6,15 +6,12 @@ import { useEffect, useState } from "react";
 function Products() {
   const { state } = useLocation();
   const title: string | "" = state?.title;
-  const productLabel: string | "" = state?.label
+  const productLabel: string | "" = state?.label;
   const [page, setPage] = useState(1);
-
-  // const [productType, setProductType] = useState(title);
-  
-  // useEffect(() => {
-  //   setPage(1); // Reset to page 1 on new selection
-  //   setProductType(title); // Trigger refetch
-  // }, [title]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setPage(1);
+  }, [title]);
 
   const { data, isLoading, isError, error } = useGetProductsQuery({
     product_type: title,
@@ -61,7 +58,9 @@ function Products() {
 
   return (
     <div>
-      <h2 className="text-4xl py-4 font-semibold">{productLabel || "Products"}</h2>
+      <h2 className="text-4xl py-4 font-semibold">
+        {productLabel || "Products"}
+      </h2>
       {renderContent()}
 
       {/* Pagination */}
@@ -95,5 +94,3 @@ function Products() {
 }
 
 export default Products;
-
-
