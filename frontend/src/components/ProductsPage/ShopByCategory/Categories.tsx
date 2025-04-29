@@ -4,19 +4,23 @@ import { Link } from "react-router-dom";
 const images = [
   {
     title: "Face",
-    src: "/categories/face-banner-1.jpg", // Corrected the file path
+    src: "/categories/face-banner-1.jpg", 
+    url:"/face/blush"
   },
   {
     title: "Eyes",
-    src: "/categories/eyes-banner-1.jpg", // Corrected the file path
+    src: "/categories/eyes-banner-1.jpg", 
+    url:"/eyes/eyebrow"
   },
   {
     title: "Lips",
-    src: "/categories/lips-banner-1.jpg", // Corrected the file path
+    src: "/categories/lips-banner-1.jpg", 
+    url:"/lips/lip_liner"
   },
   {
     title: "Nails",
-    src: "/categories/nails-banner-1.jpg", // Corrected the file path
+    src: "/categories/nails-banner-1.jpg",
+    url: "/nails/nail_polish"
   },
 ];
 
@@ -29,7 +33,7 @@ function Categories() {
       <div className="flex gap-4">
         {images.map((img) => (
           <div className="rounded-lg  relative overflow-clip" key={img.title}>
-            <Link to="/">
+            <Link to={`/products${img.url}`}>
               <img
                 className="rounded-lg hover:scale-110 duration-300 ease-in-out "
                 src={img.src}

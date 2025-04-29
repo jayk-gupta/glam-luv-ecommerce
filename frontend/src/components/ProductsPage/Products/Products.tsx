@@ -61,7 +61,7 @@ function Products() {
 
   return (
     <div>
-      <h2 className="text-4xl py-4 font-bold">{productLabel || "Products"}</h2>
+      <h2 className="text-4xl py-4 font-semibold">{productLabel || "Products"}</h2>
       {renderContent()}
 
       {/* Pagination */}
@@ -97,14 +97,3 @@ function Products() {
 export default Products;
 
 
-/*
-import { useParams } from "react-router-dom";
-
-const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
-
-// Use subcategory for API query
-const { data, isLoading } = useGetProductsQuery({
-  product_type: subcategory,
-  page,
-});
-*/ 

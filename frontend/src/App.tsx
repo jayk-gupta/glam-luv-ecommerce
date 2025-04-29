@@ -17,6 +17,7 @@ import { useGetMeQuery } from "./redux/user/authAPI";
 import { useEffect } from "react";
 import { setCredentials } from "./redux/user/authSlice";
 import VerifyOTP from "./pages/VerifyOTP";
+import ProtectedRoute from "./ProtectedRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <CartPage />,
+        element: (
+          <ProtectedRoute>
+            <CartPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/account",

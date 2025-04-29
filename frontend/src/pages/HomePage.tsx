@@ -1,6 +1,5 @@
 
 import Categories from "../components/ProductsPage/ShopByCategory/Categories";
-import TagUsBanner from "../components/HomePage/TagUs Banner/TagUsBanner";
 import Reviews from "../components/HomePage/Reviews";
 
 
@@ -16,7 +15,7 @@ function HomePage() {
         <Categories />
         <img src="/LAG_lip_haze_web_desktop_banner_2.jpg" />
         <Reviews />
-        <TagUsBanner />
+
       </div>
     </div>
   );
