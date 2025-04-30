@@ -45,7 +45,7 @@ function ProductSideNav() {
   };
 
   return (
-      <div className="w-64 bg-white flex flex-col gap-8  h-screen  px-6 py-4">
+      <div className=" bg-white flex flex-col gap-8 w-90 px-4 py-4">
           <h3 className="text-2xl font-semibold border-b border-gray-400 py-4">Categories</h3>
       {categories.map((category) => (
         <div key={category.category} className="mb-6">

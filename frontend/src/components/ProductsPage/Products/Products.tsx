@@ -8,9 +8,11 @@ function Products() {
   const title: string | "" = state?.title;
   const productLabel: string | "" = state?.label;
   const [page, setPage] = useState(1);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage(1);
+
   }, [title]);
 
   const { data, isLoading, isError, error } = useGetProductsQuery({
@@ -18,6 +20,7 @@ function Products() {
     page,
   });
 
+  
   const products = data?.products || [];
   const currentPage = data?.currentPage || 1;
   const totalPages = data?.totalPages || 1;
@@ -57,8 +60,8 @@ function Products() {
   };
 
   return (
-    <div>
-      <h2 className="text-4xl py-4 font-semibold">
+    <div className="pr-12">
+      <h2 className="text-4xl py-4  font-semibold">
         {productLabel || "Products"}
       </h2>
       {renderContent()}

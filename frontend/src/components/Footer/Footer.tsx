@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="lg:px-48 lg:pt-12 flex flex-col bg-secondary md:p-6 sm:py-6 py-2">
+    <footer className="mt-12 lg:px-48 lg:pt-12 flex flex-col bg-secondary md:p-6 sm:py-6 py-2 bg-[#FFEAF6]">
       <div className="flex pb-12 sm:flex-col md:flex-row sm:items-center flex-col gap-12 items-center">
         {/* Subscribe Section */}
         <section className="flex flex-col sm:gap-6 gap-4 lg:w-[40rem] md:w-1/2 px-12">
