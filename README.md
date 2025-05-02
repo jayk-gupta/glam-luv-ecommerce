@@ -4,6 +4,19 @@
 ## Description
 Glam Luv is a full-stack e-commerce costmetics web application. The platform allows users to browse, search, and view products, with planned features such as login/signup, product filtering, and a shopping cart.
 
+---
+## Screenshots
+
+![Screenshot 2025-05-02 205557](https://github.com/user-attachments/assets/c0799625-72da-4ee0-81b0-9e7e8411ea61)
+![Screenshot 2025-05-02 205612](https://github.com/user-attachments/assets/dfdbb388-9ef0-4863-96f3-7496973fcd39)
+![Screenshot 2025-05-02 205624](https://github.com/user-attachments/assets/0c306f89-7d3f-4fce-b68b-c2de2e803686)
+![Screenshot 2025-05-02 204311](https://github.com/user-attachments/assets/eb53fa25-9bc8-4dde-b274-1435ea0d2775)
+![Screenshot 2025-05-02 204243](https://github.com/user-attachments/assets/d9ab5d29-6ad4-44e0-8ca4-8a87861655b4)
+![Screenshot 2025-05-02 204147](https://github.com/user-attachments/assets/14c757d1-fc20-4502-8924-a9c9d450288d)
+![Screenshot 2025-05-02 204216](https://github.com/user-attachments/assets/d370ce1f-e06b-4ee4-bef3-6031319acb93)
+![Screenshot 2025-05-02 204347](https://github.com/user-attachments/assets/dadea7e0-6419-48c7-b365-8952cd202f16)
+
+
 
 ## Tech Stack
 - **Frontend:**
@@ -14,7 +27,6 @@ Glam Luv is a full-stack e-commerce costmetics web application. The platform all
 - **Backend:**
   - Node.js
   - Express.js
-  - Mongoose (MongoDB ODM)
 - **Database:**
   - MongoDB
 - **Others:**
@@ -25,35 +37,31 @@ Glam Luv is a full-stack e-commerce costmetics web application. The platform all
 
 ---
 
-## Features Implemented
-- **Frontend:** Interactive user interface using React.js and Tailwind CSS.
-- **Backend:** RESTful APIs built with Node.js and Express.js for handling requests.
-- **Database:** MongoDB for efficient storage and management of product and user data.
-- **Basic Functionality:**
-  - Display all products dynamically fetched from the backend.
-  - Responsive design with optimized layouts for mobile, tablet, and desktop.
-  - **Authentication:**
-  - User login and registration with encrypted passwords using JWT.
-  
+## 🚀 Frontend
+
+- Developed using **React.js**, **Tailwind CSS**, and **ShadCN UI** for a responsive and modern user interface.
+- Implemented **user login/signup via OTP**, using **JWT (HTTP-only cookies)** for secure session management.
+- Added **account management functionalities**: update profile, add/manage addresses, and delete account.
+- Enabled **category-based product browsing** (e.g., Lipstick, Eyeliner, Foundation).
+- Built a **shopping cart system** with full **CRUD operations**: add, update, and remove items in real time.
+- Used **Redux Toolkit** and **RTK Query** for efficient global state management and API integration.
+
+---
+
+## 🛠️ Backend
+
+- Created **RESTful APIs** with **Node.js** and **Express.js** for handling core application logic.
+- Designed a scalable **MongoDB schema** for users, products, cart, and addresses.
+- Implemented secure **OTP-based authentication** and session handling with JWT tokens via HTTP-only cookies.
+- Developed complete **CRUD APIs** for managing users, products, cart, and addresses.
+- Ensured clean and modular code structure to support scalability and maintainability.
 ---
 
 ## Planned Features
 - **Product Management:**
   - Filtering and searching products by categories, price, and brand.
-- **Shopping Cart:**
-  - Add, update, and remove products in the cart.
-- **Order Management:**
-  - Place and track orders seamlessly.
-
----
-## Screenshots
-![j2](https://github.com/user-attachments/assets/d2dd69f3-dcc7-402b-9e1e-694f91aadd32)
-![j3](https://github.com/user-attachments/assets/1fc60431-eff5-4826-a903-982c40bb8033)
-![j1](https://github.com/user-attachments/assets/d6ae01cb-0739-43c7-be36-44da9fd64fae)
-![j6](https://github.com/user-attachments/assets/66542537-e03c-433a-be60-637891504c98)
-![j7](https://github.com/user-attachments/assets/aabc134d-a0a5-4cff-b97a-719e01dc81bd)
-![j4](https://github.com/user-attachments/assets/2a4ce8a0-c2e1-425f-82d4-6f3dbc7f43eb)
-![j5](https://github.com/user-attachments/assets/a32a5aca-86a4-4da2-85dc-d61c579d90a1)
-
+- **AI Beauty Advisor Chatbot:**
+  - An AI-powered Beauty Advisor chatbot that provides personalized product recommendations and skincare advice based on user preferences and concerns.
+    
 
 
