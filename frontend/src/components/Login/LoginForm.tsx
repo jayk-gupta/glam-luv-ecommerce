@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "../ui/custom/FormInput";
 import Error from "../ui/custom/Error";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function LoginForm() {
       const response = await LogIn(values).unwrap();
       console.log(response);
       dispatch(setCredentials({ email: values.email }));
+       toast("Logged In successfully")
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -57,7 +59,7 @@ function LoginForm() {
           <Button
             variant="default"
             type="submit"
-            className="w-full bg-gray-800 text-white"
+            className="w-full bg-gray-800 text-white cursor-pointer hover:bg-gray-700"
             disabled={isLoading}
           >
             {isLoading ? "Logging In" : "Log In"}

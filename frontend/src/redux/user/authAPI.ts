@@ -57,6 +57,13 @@ export const authAPI = createApi({
         body,
       }),
     }),
+    logout: builder.mutation<{ message: string }, void>({
+      query: () => ({
+        url: "logout",
+        method: "POST", // You can also use GET if your backend accepts it
+        credentials: "include", // ensure cookies are sent
+      }),
+    }),
     getMe: builder.query<{ email: string }, void>({
       query: () => "me",
     }),
@@ -69,4 +76,5 @@ export const {
   useCompleteSignupMutation,
   useLoginMutation,
   useGetMeQuery,
+  useLogoutMutation
 } = authAPI;

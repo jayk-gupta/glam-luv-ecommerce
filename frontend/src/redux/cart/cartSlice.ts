@@ -21,23 +21,3 @@ const cartSlice = createSlice({
 export const { setCartCount } = cartSlice.actions;
 export default cartSlice.reducer;
 
-/*
-const { data } = useGetCartQuery();
-const dispatch = useDispatch();
-
-useEffect(() => {
-  if (data?.items) {
-    const total = data.items.reduce((acc, item) => acc + item.quantity, 0);
-    dispatch(setCartCount(total));
-  }
-}, [data]);
-
-
-//// navbar 
-const count = useSelector((state: RootState) => state.cart.itemCount);
-
-<CartIcon>
-  {count > 0 && <span className="badge">{count}</span>}
-</CartIcon>
-
-*/ 

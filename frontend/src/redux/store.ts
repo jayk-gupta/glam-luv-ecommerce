@@ -4,12 +4,14 @@ import { authAPI } from "./user/authAPI";
 import authReducer from "./user/authSlice";
 import { cartAPI } from "./cart/cartAPI";
 import { userAPI } from "./user/userAPI";
+import dialogReducer from "./user/dialogSlice"
 export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [cartAPI.reducerPath]: cartAPI.reducer,
+    dialog: dialogReducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -34,7 +34,6 @@ const categories = [
 ];
 function CategoriesNav({ closeCategoryNav }: CategoriesNavProps) {
   const navigate = useNavigate();
-  const location = useLocation();
   const handleCategoryClick = (
     category: string,
     product: { ui: string; api: string }

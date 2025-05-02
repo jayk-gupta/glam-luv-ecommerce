@@ -1,21 +1,6 @@
-.navbarContainer{
-    @apply 
-}
-.navLinks{
-    @apply 
-}
-.navlink{
-  @apply  
-}
-.iconWrapper{
-    @apply 
-}
-.navigation{
-@apply 
-}
+
 .logo{
   font-family: "Niconne", cursive;
   font-weight: 500;
   font-style: normal;
-  @apply 
 }

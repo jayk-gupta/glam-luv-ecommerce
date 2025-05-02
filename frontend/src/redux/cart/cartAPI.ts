@@ -1,9 +1,15 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { createBaseQuery } from "../user/baseAPI";
 
-// Type definitions
-interface CartItem {
-  product: string;
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  api_featured_image: string;
+}
+
+export interface CartItem {
+  product: Product; // ✅ full product object
   quantity: number;
 }
 
@@ -32,8 +38,8 @@ export const cartAPI = createApi({
   tagTypes: ["Cart"],
   endpoints: (builder) => ({
     // GET CART
-    getCart: builder.query<CartResponse, void>({
-      query: () => "",
+    getCart: builder.query<CartResponse,number | void>({
+      query: (trigger) => "",
       providesTags: ["Cart"],
     }),
 

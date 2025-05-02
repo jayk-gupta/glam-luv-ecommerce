@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { formSchema, FormSchema } from "./FormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
@@ -11,19 +11,19 @@ import {
 
 import { Button } from "../ui/button";
 import { FormInput } from "../ui/custom/FormInput";
-import { useClearCartMutation } from "@/redux/cart/cartAPI";
+// import { useClearCartMutation } from "@/redux/cart/cartAPI";
 import { useNavigate } from "react-router-dom";
 
 function AccountForm() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: userData, isLoading } = useGetUserProfileQuery();
+  const { data: userData } = useGetUserProfileQuery();
   const [updateProfile, { isLoading: isUpdating }] =
     useUpdateUserProfileMutation();
   const [deleteProfile, { isLoading: isDeleting }] =
     useDeleteUserProfileMutation();
   // cart
-  const { clearCart } = useClearCartMutation();
+  // const { clearCart } = useClearCartMutation();
   // form
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),

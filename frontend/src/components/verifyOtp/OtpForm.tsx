@@ -1,6 +1,6 @@
 import { useVerifyOtpMutation } from "@/redux/user/authAPI";
 import { Form } from "../ui/form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { FormSchema, formSchema } from "./FormSchema";
 import { Button } from "../ui/button";
 import { Controller, useForm } from "react-hook-form";
@@ -10,7 +10,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { RootState } from "@/redux/store";
 
 function OtpForm({ onSuccess }: { onSuccess: () => void }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const email = useSelector((state: RootState) => state.auth.signupEmail);
   const [verifyOtp, { isLoading, error }] = useVerifyOtpMutation();
 

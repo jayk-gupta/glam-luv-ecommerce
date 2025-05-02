@@ -16,8 +16,9 @@ import { useDispatch } from "react-redux";
 import { useGetMeQuery } from "./redux/user/authAPI";
 import { useEffect } from "react";
 import { setCredentials } from "./redux/user/authSlice";
-import VerifyOTP from "./pages/VerifyOTP";
 import ProtectedRoute from "./ProtectedRoute";
+import { Toaster } from "sonner";
+import LogoutDialog from "./components/ui/custom/LogoutDialog";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,10 +65,6 @@ const router = createBrowserRouter([
         element: <SignUpPage />,
       },
       {
-        path: "/verify-otp",
-        element: <VerifyOTP />,
-      },
-      {
         path: "/contact",
         element: <ContactUs />,
       },
@@ -85,6 +82,8 @@ function App() {
   return (
     <div className="w-full bg-[#FAFAFA]">
       <RouterProvider router={router} />
+      <Toaster />
+      <LogoutDialog />
     </div>
   );
 }

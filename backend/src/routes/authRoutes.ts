@@ -15,5 +15,7 @@ router.post("/signup/complete", authController.completeSignup); // expects { ema
 // Login route
 router.post("/login", authController.login); // expects { email, password }
 
+router.post("/logout",authController.logout)
+
 router.get("/me", jwtAuthMiddleware, authController.getMe);
 module.exports = router;

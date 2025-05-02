@@ -5,13 +5,15 @@ interface AuthState {
   user: {
     email: string;
   } | null;
-  signupEmail: string ;
+  signupEmail: string;
+  authTrigger: number;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
   user: null,
   signupEmail: "",
+  authTrigger: Date.now(),
 };
 
 const authSlice = createSlice({
@@ -21,6 +23,7 @@ const authSlice = createSlice({
     setCredentials: (state, action: PayloadAction<{ email: string }>) => {
       state.isAuthenticated = true;
       state.user = { email: action.payload.email };
+      state.authTrigger = Date.now();
     },
     // Called during signup step 1 (after sending OTP)
     setSignupEmail: (state, action: PayloadAction<string>) => {
@@ -33,9 +36,11 @@ const authSlice = createSlice({
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+      state.authTrigger = Date.now();
     },
   },
 });
 
-export const { setCredentials, logout,setSignupEmail,clearSignupState } = authSlice.actions;
+export const { setCredentials, logout, setSignupEmail, clearSignupState } =
+  authSlice.actions;
 export default authSlice.reducer;
