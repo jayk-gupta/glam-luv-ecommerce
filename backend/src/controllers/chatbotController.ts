@@ -174,7 +174,7 @@ export const analyzeImage = async (req: MulterRequest, res: Response) => {
       model: "gemini-1.5-flash",
       contents: createUserContent([
         createPartFromUri(uploaded.uri, uploaded.mimeType),
-        `Respond in structured bullet points using markdown. ${prompt}`, // dynamic user prompt
+        `Respond in structured bullet points using markdown. ${prompt}`, //  user prompt
       ]),
     });
 
