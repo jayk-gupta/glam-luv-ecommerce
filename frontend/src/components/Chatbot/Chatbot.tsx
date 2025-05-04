@@ -110,7 +110,7 @@ function Chatbot() {
             <CrossOutline />
           </div>
 
-          {/* Header */}
+          {/*    Header    */}
           <div className="p-4 font-semibold text-lg border-b">
             Beauty Assistant
           </div>
@@ -165,7 +165,7 @@ function Chatbot() {
                 onClick={handleSendMessage}
                 disabled={chatLoading || imageLoading}
               >
-                {imageFile ? "Analyze" : "Send"}
+                  {imageFile ? "Analyze" : "Send"}
               </Button>
             </div>
           </div>
