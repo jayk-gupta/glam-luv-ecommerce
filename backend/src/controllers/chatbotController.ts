@@ -12,7 +12,8 @@ import {
   createUserContent,
   createPartFromUri,
 } from "@google/genai";
-import { File } from "multer";
+// Use Express.Multer.File for file type
+type File = Express.Multer.File;
 // --- Configuration ---
 
 // Ensure the API key is loaded from environment variables
@@ -173,7 +174,7 @@ export const analyzeImage = async (req: MulterRequest, res: Response) => {
       model: "gemini-1.5-flash",
       contents: createUserContent([
         createPartFromUri(uploaded.uri, uploaded.mimeType),
-        prompt, // dynamic user prompt
+        `Respond in structured bullet points using markdown. ${prompt}`, // dynamic user prompt
       ]),
     });
 

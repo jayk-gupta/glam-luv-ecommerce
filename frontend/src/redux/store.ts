@@ -4,13 +4,15 @@ import { authAPI } from "./user/authAPI";
 import authReducer from "./user/authSlice";
 import { cartAPI } from "./cart/cartAPI";
 import { userAPI } from "./user/userAPI";
-import dialogReducer from "./user/dialogSlice"
+import dialogReducer from "./user/dialogSlice";
+import { chatbotAPI } from "./user/chatbotAPI";
 export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [cartAPI.reducerPath]: cartAPI.reducer,
+    [chatbotAPI.reducerPath]: chatbotAPI.reducer,
     dialog: dialogReducer,
     auth: authReducer,
   },
@@ -19,7 +21,8 @@ export const store = configureStore({
       .concat(productsApi.middleware)
       .concat(authAPI.middleware)
       .concat(cartAPI.middleware)
-      .concat(userAPI.middleware),
+      .concat(userAPI.middleware)
+      .concat(chatbotAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
