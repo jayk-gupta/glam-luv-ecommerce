@@ -7,7 +7,12 @@ import {
   GenerateContentRequest,
   Content, // Type for conversation history if needed later
 } from "@google/generative-ai";
-
+import {
+  GoogleGenAI,
+  createUserContent,
+  createPartFromUri,
+} from "@google/genai";
+import { File } from "multer";
 // --- Configuration ---
 
 // Ensure the API key is loaded from environment variables
@@ -107,21 +112,17 @@ export const getChatbot = async (req: Request, res: Response) => {
       const blockReason = result.response?.promptFeedback?.blockReason;
       if (blockReason) {
         console.warn(`Gemini request blocked due to safety: ${blockReason}`);
-        return res
-          .status(400)
-          .json({
-            error: `Request blocked due to safety concerns (${blockReason}). Please rephrase your message.`,
-          });
+        return res.status(400).json({
+          error: `Request blocked due to safety concerns (${blockReason}). Please rephrase your message.`,
+        });
       } else {
         console.warn(
           "Gemini returned an empty or invalid response structure:",
           result.response
         );
-        return res
-          .status(500)
-          .json({
-            error: "Received an empty or invalid response from the AI.",
-          });
+        return res.status(500).json({
+          error: "Received an empty or invalid response from the AI.",
+        });
       }
     }
 
@@ -138,18 +139,47 @@ export const getChatbot = async (req: Request, res: Response) => {
     console.error("Error calling Gemini API:", err);
     // Provide a more specific error message if possible, otherwise generic
     const errorMessage = err.message || "An unexpected error occurred.";
-    res
-      .status(500)
-      .json({
-        error: `Failed to get chatbot response from Gemini. ${errorMessage}`,
-      });
+    res.status(500).json({
+      error: `Failed to get chatbot response from Gemini. ${errorMessage}`,
+    });
   }
 };
+////////////////////////////////////////////////////////////////////////////
 
-// Example usage in your Express app:
-// import express from 'express';
-// const app = express();
-// app.use(express.json()); // Middleware to parse JSON bodies
-// app.post('/api/chatbot', getChatbotGemini); // Assuming you mount it here
-// const PORT = process.env.PORT || 3001;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+interface MulterRequest extends Request {
+  file: File;
+}
+
+export const analyzeImage = async (req: MulterRequest, res: Response) => {
+  try {
+    const filePath = req.file.path;
+    const { prompt } = req.body;
+
+    if (!filePath)
+      return res.status(400).json({ error: "Image not provided." });
+    if (!prompt) return res.status(400).json({ error: "Prompt is required." });
+
+    const uploaded = await ai.files.upload({
+      file: filePath,
+      config: { mimeType: "image/jpeg" },
+    });
+    if (!uploaded.uri || !uploaded.mimeType) {
+      return res
+        .status(500)
+        .json({ error: "Failed to process uploaded image." });
+    }
+    const response = await ai.models.generateContent({
+      model: "gemini-1.5-flash",
+      contents: createUserContent([
+        createPartFromUri(uploaded.uri, uploaded.mimeType),
+        prompt, // dynamic user prompt
+      ]),
+    });
+
+    res.json({ response: response.text || "No response text available." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to analyze image." });
+  }
+};

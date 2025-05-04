@@ -9,7 +9,8 @@ import { RootState } from "@/redux/store";
 import { Button } from "../ui/button";
 import { CrossOutline } from "../Icons/Icons";
 import { openLogoutDialog } from "@/redux/user/dialogSlice";
-import styles from "./navbar.module.css"
+import styles from "./navbar.module.css";
+import { toast } from "sonner";
 
 const navItemStyle =
   "hover:cursor-pointer hover:text-[#E80071] uppercase text-xl font-semibold";
@@ -68,10 +69,7 @@ function Navbar() {
         <div className="flex px-4 gap-2 relative">
           {!isAuthenticated ? (
             <Link to="/login">
-              <VscAccount
-                className="text-3xl"
-                aria-label="Account"
-              />
+              <VscAccount className="text-3xl" aria-label="Account" />
             </Link>
           ) : (
             <VscAccount
@@ -133,12 +131,34 @@ function Navbar() {
           )}
 
           {/* cart */}
-          <Link to="/cart" className="relative ">
-            <IoBagOutline className="text-3xl" aria-label="Cart" />
-            <div className="text-sm absolute bg-white left-4 bottom-4 px-2 rounded-full">
-              {quantity}
-            </div>
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/cart" className="relative">
+              <IoBagOutline
+                className="text-3xl"
+                aria-label="Cart"
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    toast("Please login!");
+                  }
+                }}
+              />
+              <div className="text-sm absolute bg-white left-4 bottom-4 px-2 rounded-full">
+                {quantity}
+              </div>
+            </Link>
+          ) : (
+            <>
+              <IoBagOutline
+                className="text-3xl cursor-pointer"
+                aria-label="Cart"
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    toast("Please login!");
+                  }
+                }}
+              />
+            </>
+          )}
         </div>
       </nav>
 
