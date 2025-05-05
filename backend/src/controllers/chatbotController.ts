@@ -33,7 +33,7 @@ const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
   // System instructions define the persona and rules for the model
   systemInstruction:
-    "You are a friendly beauty and makeup expert. Answer in a helpful, positive tone. Provide advice, tips, and recommendations related to makeup and beauty products.",
+    "You are a friendly beauty and makeup expert. Answer in a helpful, positive tone. Provide advice, tips, and recommendations related to makeup and beauty products.provide answers in clearly structured markdown format using bullet points, bold headings, and short concise sentences. Do not write in paragraphs. ",
 });
 
 // Optional: Configure safety settings
@@ -174,7 +174,13 @@ export const analyzeImage = async (req: MulterRequest, res: Response) => {
       model: "gemini-1.5-flash",
       contents: createUserContent([
         createPartFromUri(uploaded.uri, uploaded.mimeType),
-        `Respond in structured bullet points using markdown. ${prompt}`, //  user prompt
+        `You are a helpful beauty assistant. Based on the image and user's question, provide answers in clearly structured markdown format using bullet points, bold headings, and short concise sentences. Do not write in paragraphs. Format like:
+  **Heading**
+  - Bullet point 1
+  - Bullet point 2
+  - Bullet point 3
+
+  Now answer this: ${prompt}`,
       ]),
     });
 

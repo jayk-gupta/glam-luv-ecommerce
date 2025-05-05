@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils"; // Optional utility for class merging
+import { formatResponse } from "./textFormatter";
 
 interface ChatMessage {
   sender: "user" | "bot";
@@ -21,7 +22,7 @@ function Chatbot() {
   const [showChat, setShowChat] = useState(false);
   const [input, setInput] = useState("");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-   const [chat, { isLoading: chatLoading }] = useChatMutation();
+  const [chat, { isLoading: chatLoading }] = useChatMutation();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [analyzeImage, { isLoading: imageLoading }] = useAnalyzeImageMutation();
@@ -111,8 +112,8 @@ function Chatbot() {
           </div>
 
           {/*    Header    */}
-          <div className="p-4 font-semibold text-lg border-b">
-            Beauty Assistant
+          <div className="p-2 font-semibold text-lg border-b text-center">
+            Your Beauty Assistant
           </div>
 
           {/* Chat History */}
@@ -121,13 +122,13 @@ function Chatbot() {
               <div
                 key={idx}
                 className={cn(
-                  "max-w-[80%] rounded-lg px-4 py-2 text-sm",
+                  "max-w-[80%] rounded-lg px-4 py-2 text-sm my-4",
                   msg.sender === "user"
                     ? "ml-auto bg-primary text-white"
                     : "mr-auto bg-gray-200 text-black"
                 )}
               >
-                {msg.message}
+                {formatResponse(msg.message)}
               </div>
             ))}
             {(chatLoading || imageLoading) && (
@@ -147,6 +148,18 @@ function Chatbot() {
               }
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
             />
+            {imageFile ? (
+              <p
+                className=" border rounded-md p-1
+            truncate 
+            "
+              >
+                {imageFile?.name}
+              </p>
+            ) : (
+              <></>
+            )}
+
             <div className="flex items-center justify-between gap-2">
               <input
                 type="file"
@@ -158,14 +171,19 @@ function Chatbot() {
               <Button
                 variant="outline"
                 onClick={() => fileInputRef.current?.click()}
+                className="
+            max-w-32 truncate
+                  "
               >
-                {imageFile ? "Image Selected" : "Upload Image"}
+                {imageFile ? "Image" : "Upload Image"}
               </Button>
+
               <Button
                 onClick={handleSendMessage}
+                className="text-white cursor-pointer"
                 disabled={chatLoading || imageLoading}
               >
-                  {imageFile ? "Analyze" : "Send"}
+                Send
               </Button>
             </div>
           </div>
@@ -174,4 +192,4 @@ function Chatbot() {
     </div>
   );
 }
-export default Chatbot
+export default Chatbot;
