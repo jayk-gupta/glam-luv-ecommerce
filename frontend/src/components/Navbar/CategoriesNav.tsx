@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 type CategoriesNavProps = {
   closeCategoryNav: (value: boolean) => void;
 };
@@ -45,7 +45,7 @@ function CategoriesNav({ closeCategoryNav }: CategoriesNavProps) {
       state: { title: product.api, label: product.ui },
     });
   };
-  //   navigate(`/products/${category}/${subCategory}`);
+
   return (
     <div className="absolute bg-white z-10 flex justify-center h-80 items-center w-full">
       <div className="nav flex gap-32">

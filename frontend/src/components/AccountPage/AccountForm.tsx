@@ -11,8 +11,9 @@ import {
 
 import { Button } from "../ui/button";
 import { FormInput } from "../ui/custom/FormInput";
-// import { useClearCartMutation } from "@/redux/cart/cartAPI";
+import { useClearCartMutation } from "@/redux/cart/cartAPI";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function AccountForm() {
   // const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function AccountForm() {
   const [deleteProfile, { isLoading: isDeleting }] =
     useDeleteUserProfileMutation();
   // cart
-  // const { clearCart } = useClearCartMutation();
+  const [ clearCart ] = useClearCartMutation();
   // form
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -59,9 +60,8 @@ function AccountForm() {
   });
   async function onSubmit(values: FormSchema) {
     try {
-      const res = await updateProfile(values).unwrap();
-      console.log("updating profile");
-      console.log(res);
+      await updateProfile(values).unwrap();
+      toast("Profile updated successfully");
     } catch (error) {
       console.log(error);
       alert("Failed to update profile.");
@@ -138,8 +138,8 @@ function AccountForm() {
                 type="submit"
                 disabled={isUpdating}
                 className="w-1/2
-              text-white 
-              bg-primary hover:bg-primary/80 hover:cursor-pointer"
+
+           "
               >
                 {isUpdating ? "Saving..." : "Save Changes"}
               </Button>
@@ -153,7 +153,7 @@ function AccountForm() {
                     try {
                       await deleteProfile().unwrap();
                       await clearCart();
-                      alert("Account deleted successfully!");
+                      toast("Account deleted successfully!");
                       navigate("/");
                     } catch (error) {
                       console.error(error);
@@ -162,7 +162,7 @@ function AccountForm() {
                   }
                 }}
                 disabled={isDeleting}
-                className="w-1/2 text-white"
+                className="w-1/2 "
               >
                 {isDeleting ? "Deleting..." : "Delete Account"}
               </Button>

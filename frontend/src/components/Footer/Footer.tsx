@@ -38,7 +38,7 @@ function Footer() {
               <Link to="">Shipping Policy</Link>
               <Link to="">Return Policy</Link>
               <Link to="">FAQs</Link>
-              <Link to="">My Account</Link>
+              <Link to="/account">My Account</Link>
             </ul>
           </div>
           <div>
@@ -51,9 +51,9 @@ function Footer() {
           <div>
             <h4 className="font-bold text-xl mb-4 text-center">Featured</h4>
             <ul className="flex flex-col gap-2 items-center">
-              <Link to="">Eyeshadow Collections</Link>
-              <Link to="">Best Sellers</Link>
-              <Link to="">New Arrivals</Link>
+              <Link to="/products">Eyeshadow Collections</Link>
+              <Link to="/products">Best Sellers</Link>
+              <Link to="/products">New Arrivals</Link>
             </ul>
           </div>
         </section>

@@ -1,4 +1,5 @@
 import {
+  useClearCartMutation,
   useRemoveFromCartMutation,
   useUpdateCartItemMutation,
 } from "@/redux/cart/cartAPI";
@@ -18,6 +19,7 @@ interface CartItem {
 const Cart = ({ items }: { items: CartItem[] }) => {
   const [updateCartItem] = useUpdateCartItemMutation();
   const [removeFromCart] = useRemoveFromCartMutation();
+  const [clearCart] = useClearCartMutation();
 
   const handleUpdate = async (productId: string, quantity: number) => {
     if (quantity <= 0) {
@@ -96,6 +98,17 @@ const Cart = ({ items }: { items: CartItem[] }) => {
             </div>
           </div>
         ))}
+        <div>
+          <Button
+            className="text-white cursor-pointer py-2 m-4"
+            onClick={() => {
+              clearCart();
+              toast("Cart deleted successfully")
+            }}
+          >
+            Clear Cart
+          </Button>
+        </div>
       </div>
 
       <div className=" text-lg flex flex-col gap-4 shadow-xl p-4 w-80 h-90 bg-white">

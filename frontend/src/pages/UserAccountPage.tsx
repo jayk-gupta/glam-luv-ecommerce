@@ -1,5 +1,5 @@
 import AccountForm from '@/components/AccountPage/AccountForm'
-import React from 'react'
+
 
 function UserAccountPage() {
   return (

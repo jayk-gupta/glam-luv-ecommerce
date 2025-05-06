@@ -1,6 +1,7 @@
 import { useAddToCartMutation } from "@/redux/cart/cartAPI";
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 interface ProductCardProps {
   product: {
     _id: string;
@@ -21,8 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     e.preventDefault();
     try {
       await addToCart({ productId: _id, quantity: 1 }).unwrap();
-      
-      console.log("added to cart")
+      toast("Item added to cart")
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }

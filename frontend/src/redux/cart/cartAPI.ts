@@ -39,7 +39,7 @@ export const cartAPI = createApi({
   endpoints: (builder) => ({
     // GET CART
     getCart: builder.query<CartResponse,number | void>({
-      query: (trigger) => "",
+      query: (_trigger) => "",
       providesTags: ["Cart"],
     }),
 
