@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../redux/productsSlice";
+import { useGetProductByIdQuery } from "../../redux/product/productsAPI";
 import ProductColors from "./ProductColors";
 import ProductCartValue from "./ProductCartValue";
 import { useAddToCartMutation } from "@/redux/cart/cartAPI";
 import { useState } from "react";
+import { toast } from "sonner";
 const Product = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from URL
   const { data: product, isLoading, isError } = useGetProductByIdQuery(id!);
@@ -23,7 +24,7 @@ const Product = () => {
         quantity: quantity,
       }).unwrap();
 
-      console.log(response);
+      toast("Item added to cart");
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }

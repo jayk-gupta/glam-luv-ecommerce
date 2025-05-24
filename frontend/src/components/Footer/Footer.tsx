@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+const linkStyle = "hover:text-[#EB008B]";
 
 function Footer() {
   return (
@@ -15,7 +16,7 @@ function Footer() {
               placeholder="Enter your email"
               aria-label="Email address"
             />
-            <button className="bg-[#EB008B] w-full lg:p-4 p-2 text-white font-bold uppercase">
+            <button className="bg-[#EB008B] hover:cursor-pointer  hover:bg-[#ff029e] w-full lg:p-4 p-2 text-white font-bold uppercase">
               Subscribe
             </button>
           </div>
@@ -33,27 +34,47 @@ function Footer() {
             <h4 className="font-bold text-xl mb-4 text-center">
               Customer Service
             </h4>
-            <ul className="flex flex-col gap-2 items-center">
-              <Link to="/contact">Contact Us</Link>
-              <Link to="">Shipping Policy</Link>
-              <Link to="">Return Policy</Link>
-              <Link to="">FAQs</Link>
-              <Link to="/account">My Account</Link>
+            <ul className="flex flex-col gap-2 items-center ">
+              <Link to="/contact" className={linkStyle}>
+                Contact Us
+              </Link>
+              <Link to="" className={linkStyle}>
+                Shipping Policy
+              </Link>
+              <Link to="" className={linkStyle}>
+                Return Policy
+              </Link>
+              <Link to="/faq" className={linkStyle}>
+                FAQs
+              </Link>
+              <Link to="/account " className={linkStyle}>
+                My Account
+              </Link>
             </ul>
           </div>
           <div>
             <h4 className="font-bold text-xl mb-4 text-center">Explore</h4>
             <ul className="flex flex-col gap-2 items-center">
-              <Link to="/about">Our Story</Link>
-              <Link to="">Join Our Team</Link>
+              <Link to="/about" className={linkStyle}>
+                Our Story
+              </Link>
+              <Link to="" className={linkStyle}>
+                Join Our Team
+              </Link>
             </ul>
           </div>
           <div>
             <h4 className="font-bold text-xl mb-4 text-center">Featured</h4>
             <ul className="flex flex-col gap-2 items-center">
-              <Link to="/products">Eyeshadow Collections</Link>
-              <Link to="/products">Best Sellers</Link>
-              <Link to="/products">New Arrivals</Link>
+              <Link to="/products" className={linkStyle}>
+                Eyeshadow Collections
+              </Link>
+              <Link to="/products" className={linkStyle}>
+                Best Sellers
+              </Link>
+              <Link to="/products" className={linkStyle}>
+                New Arrivals
+              </Link>
             </ul>
           </div>
         </section>
@@ -62,11 +83,21 @@ function Footer() {
       {/* Footer Section */}
       <div className="flex flex-col items-center gap-2">
         <ul className="border-y-[0.1px] border-gray-400 sm:py-4 w-full flex justify-center text-[0.8rem] py-2 px-4 gap-4 sm:text-sm">
-          <Link to="">Privacy Policy</Link>
-          <Link to="">Terms & Conditions</Link>
-          <Link to="">Terms of Use</Link>
-          <Link to="">Terms of Service</Link>
-          <Link to="">Legal Disclaimer</Link>
+          <Link to="" className={linkStyle}>
+            Privacy Policy
+          </Link>
+          <Link to="" className={linkStyle}>
+            Terms & Conditions
+          </Link>
+          <Link to="" className={linkStyle}>
+            Terms of Use
+          </Link>
+          <Link to="" className={linkStyle}>
+            Terms of Service
+          </Link>
+          <Link to="" className={linkStyle}>
+            Legal Disclaimer
+          </Link>
         </ul>
         <div className="flex flex-col items-center">
           {/* Add Social Media Icons Here */}

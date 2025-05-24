@@ -1,6 +1,6 @@
 import ProductCard from "../../Product/Product Card/ProductCard";
 import { useLocation } from "react-router-dom";
-import { useGetProductsQuery } from "../../../redux/productsSlice";
+import { useGetProductsQuery } from "../../../redux/product/productsAPI";
 import { useEffect, useState } from "react";
 
 function Products() {
@@ -12,7 +12,6 @@ function Products() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage(1);
-
   }, [title]);
 
   const { data, isLoading, isError, error } = useGetProductsQuery({
@@ -20,7 +19,6 @@ function Products() {
     page,
   });
 
-  
   const products = data?.products || [];
   const currentPage = data?.currentPage || 1;
   const totalPages = data?.totalPages || 1;

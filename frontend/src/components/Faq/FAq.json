@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "question": "What payment methods do you accept?",
+        "answer": "We accept a variety of payment options including credit/debit cards, UPI, net banking, and popular digital wallets like Paytm, PhonePe, and Google Pay. All transactions are secure and processed through trusted gateways. We ensure safe and smooth checkout for every customer."
+    },
+    {
+        "id": 2,
+        "question": "How long does delivery take?",
+        "answer": "Delivery usually takes between 3 to 7 business days depending on your location and the selected shipping option. Urban areas may receive deliveries faster, while remote regions might take a bit longer. You can track your order in real-time after dispatch."
+    },
+    {
+        "id": 3,
+        "question": "Can I cancel or modify my order?",
+        "answer": "Yes, you can cancel or modify your order within 1 hour of placing it by visiting the 'My Orders' section in your account. After that, the order is processed and cancellation might not be possible. If you need assistance, our support team is ready to help."
+    },
+    {
+        "id": 4,
+        "question": "Do you offer international shipping?",
+        "answer": "Currently, we only offer domestic shipping within India. However, we are working on expanding our delivery network to support international orders in the near future. Stay tuned for updates via our newsletter or social media channels."
+    },
+    {
+        "id": 5,
+        "question": "How can I track my order?",
+        "answer": "Once your order is shipped, we’ll send you a tracking link to your registered email and phone number. You can also track the order status directly from the 'My Orders' section in your account. We provide updates at every stage of delivery."
+    },
+    {
+        "id": 6,
+        "question": "What is your return policy?",
+        "answer": "We offer a hassle-free 7-day return policy for most products. To qualify, items must be unused, unwashed, and returned in original packaging. Once your return is received and inspected, you’ll be eligible for a refund or exchange as per our policy."
+    },
+    {
+        "id": 7,
+        "question": "Do I need an account to place an order?",
+        "answer": "No, you can place an order as a guest. However, we recommend creating an account for a better experience. It allows you to track orders, manage addresses, and receive exclusive offers and faster checkout during future purchases."
+    },
+    {
+        "id": 8,
+        "question": "Is my payment information secure?",
+        "answer": "Yes, your payment details are 100% secure. We use end-to-end encryption and PCI-DSS compliant payment gateways to safeguard all transactions. Your data is never stored on our servers and is only used to complete the purchase process securely."
+    },
+    {
+        "id": 9,
+        "question": "What if I receive a damaged or wrong product?",
+        "answer": "If you receive a damaged or incorrect item, please report it within 48 hours of delivery via our support portal. We’ll arrange a return pickup and provide a free replacement or refund. Our quality assurance team ensures issues like this are rare."
+    },
+    {
+        "id": 10,
+        "question": "Are there any shipping charges?",
+        "answer": "Shipping is free on orders above ₹499. For orders below that amount, a nominal shipping fee of ₹49 is applied during checkout. We occasionally offer free shipping promotions, so keep an eye out for discount codes and seasonal offers."
+    },
+    {
+        "id": 11,
+        "question": "Do you offer gift wrapping or custom notes?",
+        "answer": "Yes, we offer gift wrapping and allow you to add a personalized message during checkout. This service is perfect for birthdays, anniversaries, or special occasions. A small additional fee may apply depending on the wrapping option selected."
+    },
+    {
+        "id": 12,
+        "question": "How do I contact customer support?",
+        "answer": "You can reach our customer support team through the contact form on our website, email us at support@yourecommerce.com, or call our helpline at +91-XXXXXXXXXX. Our team is available Monday to Saturday, 10 AM to 6 PM IST."
+    }
+]

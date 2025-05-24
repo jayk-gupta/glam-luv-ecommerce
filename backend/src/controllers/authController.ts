@@ -3,7 +3,7 @@ import User from "../models/User";
 import Otp from "../models/Otp";
 import { generateToken } from "../jwt";
 const nodemailer = require("nodemailer");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 export interface AuthRequest extends Request {
   userPayload: {
     userId: string;
@@ -109,8 +109,8 @@ exports.login = async (req: Request, res: Response) => {
     .cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      secure: false,
-      sameSite: "lax",
+      secure: true, 
+      sameSite: "none",
     })
     .status(200)
     .json({ message: "Login successful", user: { email: user.email } });
@@ -122,13 +122,16 @@ export const logout = async (req: Request, res: Response) => {
   console.log("in logout")
   console.log(req.cookies)
   try {
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    }).status(200).json({
-      message: "Logged out successfully"
-    })
+    res
+      .clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      })
+      .status(200)
+      .json({
+        message: "Logged out successfully",
+      });
   } catch (error) {
     console.error("Logout error:", error);
     res.status(500).json({ error: "Logout failed" });

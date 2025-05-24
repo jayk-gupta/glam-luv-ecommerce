@@ -4,22 +4,22 @@ import { Link } from "react-router-dom";
 const images = [
   {
     title: "Face",
-    src: "/categories/face-banner-1.jpg", 
+    src: "/categories/face.webp", 
     url:"/face/blush"
   },
   {
     title: "Eyes",
-    src: "/categories/eyes-banner-1.jpg", 
+    src: "/categories/eyes.webp", 
     url:"/eyes/eyebrow"
   },
   {
     title: "Lips",
-    src: "/categories/lips-banner-1.jpg", 
+    src: "/categories/lips.webp", 
     url:"/lips/lip_liner"
   },
   {
     title: "Nails",
-    src: "/categories/nails-banner-1.jpg",
+    src: "/categories/nails.webp",
     url: "/nails/nail_polish"
   },
 ];

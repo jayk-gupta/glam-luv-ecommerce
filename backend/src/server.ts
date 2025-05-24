@@ -1,16 +1,43 @@
 import express, { Request, Response } from "express";
-import mongoose from "mongoose";
-
+import mongoose from "mongoose";;
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+
+const fs = require("fs");
+const https = require("https");
+
+// Read SSL certificate and key
+// const privateKey = fs.readFileSync("/home/ubuntu/ssl/server.key", "utf8");
+// const certificate = fs.readFileSync("/home/ubuntu/ssl/server.crt", "utf8");
+// const credentials = { key: privateKey, cert: certificate };
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ecom-frontend-swart.vercel.app",
+];
+
+const corsOptions = {
+  origin: (
+    origin: string | undefined,
+    callback: (err: Error | null, allow?: boolean) => void
+  ) => {
+    if (!origin) {
+      // Allow requests with no origin (like curl or Postman)
+      callback(null, true);
+    } else if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed for this origin"));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 

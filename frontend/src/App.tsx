@@ -19,6 +19,7 @@ import { setCredentials } from "./redux/user/authSlice";
 import ProtectedRoute from "./ProtectedRoute";
 import { Toaster } from "sonner";
 import LogoutDialog from "./components/ui/custom/LogoutDialog";
+import FaqPage from "./pages/FaqPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs />,
+      },
+      {
+        path: "/faq",
+        element: <FaqPage />,
       },
     ],
   },
