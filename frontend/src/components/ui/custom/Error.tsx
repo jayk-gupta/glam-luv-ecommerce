@@ -1,27 +1,33 @@
+type ErrorProps = {
+  error: any;
+};
 
-
-function Error({ error }: any) {
+function Error({ error }: ErrorProps) {
   return (
-    <div className="text-red-500">
-      <p>Error:</p>
-      {"data" in error ? (
-        <ul className="list-disc ">
-          {/* Display Email Errors */}
-          {Array.isArray((error.data as any).email) &&
-            (error.data as any).email.map((errMsg: string, index: number) => (
-              <li key={`email-${index}`}>{errMsg}</li>
-            ))}
+    <div className="text-red-500 mt-2">
+      <p className="font-semibold">Error:</p>
 
-          {/* Display Password Errors */}
-          {Array.isArray((error.data as any).password) &&
-            (error.data as any).password.map(
-              (errMsg: string, index: number) => (
-                <li key={`password-${index}`}>{errMsg}</li>
-              )
-            )}
+      {/* General message */}
+      {"data" in error && typeof error.data?.message === "string" && (
+        <p>{error.data.message}</p>
+      )}
+
+      {/* Email-specific errors */}
+      {Array.isArray(error.data?.email) && (
+        <ul className="list-disc ml-5">
+          {error.data.email.map((msg: string, i: number) => (
+            <li key={`email-${i}`}>{msg}</li>
+          ))}
         </ul>
-      ) : (
-        <p>{(error as any).message || "Something went wrong"}</p>
+      )}
+
+      {/* Password-specific errors */}
+      {Array.isArray(error.data?.password) && (
+        <ul className="list-disc ml-5">
+          {error.data.password.map((msg: string, i: number) => (
+            <li key={`password-${i}`}>{msg}</li>
+          ))}
+        </ul>
       )}
     </div>
   );

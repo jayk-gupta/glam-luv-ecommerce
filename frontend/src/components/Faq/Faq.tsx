@@ -2,9 +2,22 @@ import { useState } from "react";
 import faqs from "./FAq.json";
 import { BaselinePlus, SharpMinus } from "../Icons/Icons";
 function Faq() {
-  const [selectedFaq, setSelectedFaq] = useState<number | null>(3);
+  const [openFaqs, setSelectedFaqs] = useState<Set<number>>(new Set());
   const handleToggle = (id: number) => {
-    setSelectedFaq((prev) => (prev === id ? null : id));
+    // setSelectedFaq((prev) => (prev === id ? null : id));
+    // prev is prev state of open faq ids
+    setSelectedFaqs((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        // close if already open
+        //  add delete has : has complexity O(1)
+        newSet.delete(id);
+      } else {
+        // open if closed
+        newSet.add(id);
+      }
+      return newSet;
+    });
   };
   return (
     <div className="w-2/5 ">
@@ -22,7 +35,7 @@ function Faq() {
                   className="relative cursor-pointer w-6 h-6"
                   onClick={() => handleToggle(faq.id)}
                 >
-                  {selectedFaq === faq.id ? (
+                  {openFaqs.has(faq.id) ? (
                     <SharpMinus className="text-3xl " />
                   ) : (
                     <BaselinePlus className="text-3xl " />
@@ -30,9 +43,9 @@ function Faq() {
                 </button>
               </span>
             </h3>
-            {selectedFaq === faq.id && (
+            {openFaqs.has(faq.id) && (
               <p className={`text-lg } `}>{faq.answer}</p>
-              )}
+            )}
           </div>
         ))}
       </div>

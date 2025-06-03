@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn } from "@/lib/utils"; // Optional utility for class merging
+import { cn } from "@/lib/utils"; 
 import { formatResponse } from "./textFormatter";
 
 interface ChatMessage {
@@ -75,7 +75,7 @@ function Chatbot() {
           ...prev,
           { sender: "bot", message: response.response },
         ]);
-      } catch (err) {
+      } catch (err:any) {
         setChatMessages((prev) => [
           ...prev,
           { sender: "bot", message: "Sorry, something went wrong." },

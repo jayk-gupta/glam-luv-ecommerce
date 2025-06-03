@@ -103,7 +103,7 @@ const Cart = ({ items }: { items: CartItem[] }) => {
             className="text-white cursor-pointer py-2 m-4"
             onClick={() => {
               clearCart();
-              toast("Cart deleted successfully")
+              toast("Cart deleted successfully");
             }}
           >
             Clear Cart
@@ -111,15 +111,20 @@ const Cart = ({ items }: { items: CartItem[] }) => {
         </div>
       </div>
 
-      <div className=" text-lg flex flex-col gap-4 shadow-xl p-4 w-80 h-90 bg-white">
-        <h4 className="font-semibold border-b border-gray-500 mb-2 text-2xl ">
-          Summary
-        </h4>
-        <p className="text-xl">Total Items: {items.length}</p>
-        <p className="text-xl">
-          SubTotal: <span className="font-bold">${total.toFixed(2)}</span>
-        </p>
+      <div className=" text-lg flex flex-col justify-between shadow-xl p-4 w-80 h-90 bg-white">
+        <div className="flex flex-col gap-4">
+          <h4 className="font-semibold border-b border-gray-500 mb-2 text-2xl ">
+            Summary
+          </h4>
+          <p className="text-xl">Total Items: {items.length}</p>
+          <p className="text-xl">
+            SubTotal: <span className="font-bold">${total.toFixed(2)}</span>
+          </p>
+        </div>
+
+        <Button className="mb-4">Proceed to payment</Button>
       </div>
+      <div></div>
     </div>
   );
 };

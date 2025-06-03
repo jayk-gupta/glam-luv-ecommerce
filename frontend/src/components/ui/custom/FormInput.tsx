@@ -11,7 +11,8 @@ interface FormInputProps<T extends FieldValues> {
   form: UseFormReturn<T>; // Pass the form object for type inference
   disabled?: boolean;
   className?: string;
-  children?: ReactNode ;
+  children?: ReactNode;
+  autoComplete?: string;
 }
 
 export const FormInput = <T extends FieldValues>({
@@ -22,6 +23,7 @@ export const FormInput = <T extends FieldValues>({
   form,
   disabled = false,
   className = "",
+  autoComplete,
 }: FormInputProps<T>) => {
   return (
     <FormField
@@ -35,6 +37,7 @@ export const FormInput = <T extends FieldValues>({
               <Input
                 className=" "
                 placeholder={placeholder}
+                autoComplete={autoComplete}
                 type={type}
                 {...field}
                 disabled={disabled}
